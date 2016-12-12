@@ -16,7 +16,7 @@ namespace PracticeBuilder.Migrations
                         Info = c.String(),
                         TwoSided = c.Boolean(nullable: false),
                         ImageURL = c.String(),
-                        DurationSuggestion = c.String(),
+                        DurationSuggestion = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.BasePoseID);
             

@@ -99,7 +99,16 @@ namespace PracticeBuilder.Tests
                 new Yogi
                 {
                     YogiID = 1,
-                    Name = "second"
+                    Name = "second",
+                    Practices = new List<Practice>
+                    {
+                        new Practice
+                        {
+                            PracticeID = 2,
+                            Name = "Sample Practice",
+                            Poses = new List<UserPose>()
+                        }
+                    }
                 }
             };
             practices = new List<Practice>
@@ -121,13 +130,15 @@ namespace PracticeBuilder.Tests
                 {
                     BasePoseID = 0,
                     Name = "first",
-                    TwoSided = false
+                    TwoSided = false,
+                    DurationSuggestion = 3
                 },
                 new BasePose
                 {
                     BasePoseID = 1,
                     Name = "second",
-                    TwoSided = true
+                    TwoSided = true,
+                    DurationSuggestion = 5
                 }
             };
             user_poses = new List<UserPose>
@@ -185,14 +196,28 @@ namespace PracticeBuilder.Tests
             Assert.IsNotNull(found_practice);
         }
         [TestMethod]
+        public void RepoEnsureMockYogiHasOnePractice()
+        {
+            ConnectMocksToDatastore();
+            Yogi Test_yogi = repo.FindYogi("second");
+            Assert.AreEqual(1, Test_yogi.Practices.ToList().Count);
+        }
+        [TestMethod]
         public void RepoCanRemovePractice()
         {
-            Assert.IsNotNull(null);
+            ConnectMocksToDatastore();
+            repo.RemovePracticeFromYogi("second", "Sample Practice");
+
+            Yogi Test_yogi = repo.FindYogi("second");
+
+            Assert.AreEqual(0, Test_yogi.Practices.ToList().Count);
         }
         [TestMethod]
         public void RepoCanGenerateUserPoseFromBasePose()
         {
-            Assert.IsNotNull(null);
+            ConnectMocksToDatastore();
+            UserPose new_pose = repo.NewUserPose("first", "second", "Sample Practice");
+            Assert.IsNotNull(new_pose);
         }
         [TestMethod]
         public void RepoCanRemoveUserPose()

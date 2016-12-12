@@ -16,7 +16,8 @@ namespace PracticeBuilder.Models
         [Required]
         public bool TwoSided { get; set; }
         public string ImageURL { get; set; }
-        public string DurationSuggestion { get; set; }
+        [Required]
+        public int DurationSuggestion { get; set; }
         
     }
 }
