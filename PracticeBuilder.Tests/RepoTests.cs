@@ -175,9 +175,14 @@ namespace PracticeBuilder.Tests
             Assert.IsNotNull(null);
         }
         [TestMethod]
-        public void RepoCanAddPractice()
+        public void RepoCanAddNewPractice()
         {
-            Assert.IsNotNull(null);
+            ConnectMocksToDatastore();
+            repo.AddNewPractice("first", "my new practice");
+            Yogi found_yogi = repo.FindYogi("first");
+            Practice found_practice = repo.SearchYogiForPractice("first", "my new practice");
+
+            Assert.IsNotNull(found_practice);
         }
         [TestMethod]
         public void RepoCanRemovePractice()
