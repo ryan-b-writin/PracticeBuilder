@@ -12,7 +12,6 @@ namespace PracticeBuilder.Models
         public int BasePoseID { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         public string Info { get; set; }
         [Required]
         public bool TwoSided { get; set; }

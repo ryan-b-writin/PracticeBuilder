@@ -12,7 +12,6 @@ namespace PracticeBuilder.Models
         public int PracticeID { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         public virtual List<UserPose> Poses { get; set; }
     }
 }

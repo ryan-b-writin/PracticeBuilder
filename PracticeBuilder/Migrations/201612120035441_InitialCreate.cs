@@ -13,7 +13,7 @@ namespace PracticeBuilder.Migrations
                     {
                         BasePoseID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Info = c.String(nullable: false),
+                        Info = c.String(),
                         TwoSided = c.Boolean(nullable: false),
                         ImageURL = c.String(),
                         DurationSuggestion = c.String(),

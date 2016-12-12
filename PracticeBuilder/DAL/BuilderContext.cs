@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PracticeBuilder.DAL
 {
-    public class PracticeBuilderContext : DbContext
+    public class BuilderContext : DbContext
     {
         public virtual DbSet<Yogi> Yogis { get; set; }
         public virtual DbSet<Practice> Practices { get; set; }

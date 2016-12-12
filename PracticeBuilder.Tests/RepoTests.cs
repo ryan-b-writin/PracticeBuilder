@@ -16,8 +16,8 @@ namespace PracticeBuilder.Tests
         private Mock<DbSet<Practice>> mock_practices { get; set; }
         private Mock<DbSet<BasePose>> mock_base_poses { get; set; }
         private Mock<DbSet<UserPose>> mock_user_poses { get; set; }
-        private Mock<PracticeBuilderContext> mock_context { get; set; }
-        private PracticeBuilderRepo repo { get; set; }
+        private Mock<BuilderContext> mock_context { get; set; }
+        private BuilderRepo repo { get; set; }
         private List<Yogi> yogis { get; set; }
         private List<Practice> practices { get; set; }
         private List<BasePose> base_poses { get; set; }
@@ -84,16 +84,72 @@ namespace PracticeBuilder.Tests
         [TestInitialize]
         public void Initialize()
         {
-            mock_context = new Mock<PracticeBuilderContext>();
+            mock_context = new Mock<BuilderContext>();
             mock_yogis = new Mock<DbSet<Yogi>>();
             mock_practices = new Mock<DbSet<Practice>>();
             mock_base_poses = new Mock<DbSet<BasePose>>();
             mock_user_poses = new Mock<DbSet<UserPose>>();
-            yogis = new List<Yogi>();
-            practices = new List<Practice>();
-            base_poses = new List<BasePose>();
-            user_poses = new List<UserPose>();
-            repo = new PracticeBuilderRepo(mock_context.Object);
+            yogis = new List<Yogi>
+            {
+                new Yogi
+                {
+                    YogiID = 0,
+                    Name = "first"
+                },
+                new Yogi
+                {
+                    YogiID = 1,
+                    Name = "second"
+                }
+            };
+            practices = new List<Practice>
+            {
+                new Practice
+                {
+                    PracticeID = 0,
+                    Name = "first"
+                },
+                new Practice
+                {
+                    PracticeID = 1,
+                    Name = "second"
+                }
+            };
+            base_poses = new List<BasePose>
+            {
+                new BasePose
+                {
+                    BasePoseID = 0,
+                    Name = "first",
+                    TwoSided = false
+                },
+                new BasePose
+                {
+                    BasePoseID = 1,
+                    Name = "second",
+                    TwoSided = true
+                }
+            };
+            user_poses = new List<UserPose>
+            {
+                new UserPose
+                {
+                    UserPoseID = 0,
+                    Name = "first",
+                    Reference = new BasePose {BasePoseID = 2, Name = "Downward Dog", TwoSided = false },
+                    Duration = 5,
+                    PracticeOrder = 0
+                },
+                new UserPose
+                {
+                    UserPoseID = 0,
+                    Name = "second",
+                    Reference = new BasePose {BasePoseID = 3, Name = "Triangle", TwoSided = true },
+                    Duration = 3,
+                    PracticeOrder = 1
+                }
+            };
+            repo = new BuilderRepo(mock_context.Object);
         }
         [TestCleanup]
         public void Teardown()
@@ -103,8 +159,52 @@ namespace PracticeBuilder.Tests
         [TestMethod]
         public void RepoCanCreateInstanceOfRepo()
         {
-            PracticeBuilderRepo repo = new PracticeBuilderRepo();
             Assert.IsNotNull(repo);
         }
+        [TestMethod]
+        public void RepoCanFindYogi()
+        {
+            ConnectMocksToDatastore();
+            Yogi second_yogi = repo.FindYogi("second");
+
+            Assert.AreEqual("second", second_yogi.Name);
+        }
+        [TestMethod]
+        public void RepoCanAddYogi()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoCanAddPractice()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoCanRemovePractice()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoCanGenerateUserPoseFromBasePose()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoCanRemoveUserPose()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoCanReorderUserPoses()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoCanEditPoses()
+        {
+            Assert.IsNotNull(null);
+        }
+
     }
+
 }
