@@ -106,7 +106,23 @@ namespace PracticeBuilder.Tests
                         {
                             PracticeID = 2,
                             Name = "Sample Practice",
-                            Poses = new List<UserPose>()
+                            Poses = new List<UserPose>
+                            {
+                                new UserPose
+                                {
+                                    UserPoseID = 2,
+                                    Name = "Sample User Pose",
+                                    Reference = new BasePose
+                                    {
+                                        BasePoseID = 2,
+                                        Name = "Sample Base Pose",
+                                        TwoSided = true,
+                                        DurationSuggestion = 3
+                                    },
+                                    Duration = 5,
+                                    PracticeOrder = 1  
+                                }
+                            }
                         }
                     }
                 }
@@ -181,11 +197,6 @@ namespace PracticeBuilder.Tests
             Assert.AreEqual("second", second_yogi.Name);
         }
         [TestMethod]
-        public void RepoCanAddYogi()
-        {
-            Assert.IsNotNull(null);
-        }
-        [TestMethod]
         public void RepoCanAddNewPractice()
         {
             ConnectMocksToDatastore();
@@ -216,13 +227,36 @@ namespace PracticeBuilder.Tests
         public void RepoCanGenerateUserPoseFromBasePose()
         {
             ConnectMocksToDatastore();
-            UserPose new_pose = repo.NewUserPose("first", "second", "Sample Practice");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+            UserPose new_pose = repo.NewUserPose(found_practice, "first");
             Assert.IsNotNull(new_pose);
+        }
+        [TestMethod]
+        public void RepoEnsureMockYogiHasBasePoseToDelete()
+        {
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+
+            int expected_num_of_poses = 1;
+            int actual_num_of_poses = found_practice.Poses.ToList().Count;
+
+            Assert.AreEqual(expected_num_of_poses, actual_num_of_poses);
+
         }
         [TestMethod]
         public void RepoCanRemoveUserPose()
         {
-            Assert.IsNotNull(null);
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+            repo.DeletePose(found_practice, "Sample User Pose");
+
+            int expected_num_of_poses = 0;
+            int actual_num_of_poses = found_practice.Poses.ToList().Count;
+
+            Assert.AreEqual(expected_num_of_poses, actual_num_of_poses);
+
         }
         [TestMethod]
         public void RepoCanReorderUserPoses()
