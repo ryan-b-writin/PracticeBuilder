@@ -22,7 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
-
+.modalphoto {
+    width:200px;
+    height:auto;
+}
+.thumbnail{
+    width:32px;
+    height:auto;
+}
 .table-fixed thead {
   width: 97%;
 }
