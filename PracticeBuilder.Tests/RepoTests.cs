@@ -120,7 +120,35 @@ namespace PracticeBuilder.Tests
                                         DurationSuggestion = 3
                                     },
                                     Duration = 5,
-                                    PracticeOrder = 1  
+                                    PracticeOrder = 0  
+                                },
+                                new UserPose
+                                {
+                                    UserPoseID = 3,
+                                    Name = "Sample User Pose2",
+                                    Reference = new BasePose
+                                    {
+                                        BasePoseID = 3,
+                                        Name = "Sample Base Pose2",
+                                        TwoSided = true,
+                                        DurationSuggestion = 4
+                                    },
+                                    Duration = 4,
+                                    PracticeOrder = 1
+                                },
+                                new UserPose
+                                {
+                                    UserPoseID = 4,
+                                    Name = "Sample User Pose3",
+                                    Reference = new BasePose
+                                    {
+                                        BasePoseID = 4,
+                                        Name = "Sample Base Pose3",
+                                        TwoSided = true,
+                                        DurationSuggestion = 2
+                                    },
+                                    Duration = 6,
+                                    PracticeOrder = 2
                                 }
                             }
                         }
@@ -238,7 +266,7 @@ namespace PracticeBuilder.Tests
             Yogi found_yogi = repo.FindYogi("second");
             Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
 
-            int expected_num_of_poses = 1;
+            int expected_num_of_poses = 3;
             int actual_num_of_poses = found_practice.Poses.ToList().Count;
 
             Assert.AreEqual(expected_num_of_poses, actual_num_of_poses);
@@ -252,21 +280,93 @@ namespace PracticeBuilder.Tests
             Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
             repo.DeletePose(found_practice, "Sample User Pose");
 
-            int expected_num_of_poses = 0;
+            int expected_num_of_poses = 2;
             int actual_num_of_poses = found_practice.Poses.ToList().Count;
 
             Assert.AreEqual(expected_num_of_poses, actual_num_of_poses);
 
         }
-        [TestMethod]
-        public void RepoCanReorderUserPoses()
+        /*[TestMethod]
+        public void RepoEnsureMockPosesInOriginalOrder()
         {
-            Assert.IsNotNull(null);
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+            UserPose found_pose = repo.FindUserPose(found_practice, "Sample User Pose");
+            UserPose found_pose2 = repo.FindUserPose(found_practice, "Sample User Pose2");
+            UserPose found_pose3 = repo.FindUserPose(found_practice, "Sample User Pose3");
+            Assert.AreEqual(found_pose.PracticeOrder, 0);
+            Assert.AreEqual(found_pose.PracticeOrder, 1);
+            Assert.AreEqual(found_pose.PracticeOrder, 2);
+
+        }*/
+        /*[TestMethod]
+        public void RepoCanReorderPoses()
+        {
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+            UserPose found_pose = repo.FindUserPose(found_practice, "Sample User Pose");
+            UserPose found_pose2 = repo.FindUserPose(found_practice, "Sample User Pose2");
+            UserPose found_pose3 = repo.FindUserPose(found_practice, "Sample User Pose3");
+
+            repo.MovePose(found_practice, found_pose, 2);
+
+            Assert.AreEqual(found_pose.PracticeOrder, 2);
+            Assert.AreEqual(found_pose.PracticeOrder, 0);
+            Assert.AreEqual(found_pose.PracticeOrder, 1);
+        }*/
+        [TestMethod]
+        public void RepoEnsureOriginalPoseValues()
+        {
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+            UserPose found_pose = repo.FindUserPose(found_practice, "Sample User Pose");
+            Assert.AreEqual(found_pose.Name, "Sample User Pose");
+            Assert.AreEqual(found_pose.Duration, 5);
+            Assert.IsNull(found_pose.Side);
         }
         [TestMethod]
         public void RepoCanEditPoses()
         {
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            Practice found_practice = repo.SearchYogiForPractice("second", "Sample Practice");
+            UserPose found_pose = repo.FindUserPose(found_practice, "Sample User Pose");
+
+            repo.EditPoseName(found_pose, "new name");
+            repo.EditPoseDuration(found_pose, 20);
+            repo.EditPoseSide(found_pose, "R");
+
+            Assert.AreEqual(found_pose.Name, "new name");
+            Assert.AreEqual(found_pose.Duration, 20);
+            Assert.AreEqual(found_pose.Side, "R");
+        }
+        [TestMethod]
+        public void RepoNoDuplicateYogiNames()
+        {
             Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoNoDuplicatePracticeNames()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoNoDuplicateUserPoseNames()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoNoDuplicateBasePoseNames()
+        {
+            Assert.IsNotNull(null);
+        }
+        [TestMethod]
+        public void RepoPoseOrderNumberIsAccurate()
+        {
+
         }
 
     }

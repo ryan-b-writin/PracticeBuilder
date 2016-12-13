@@ -97,5 +97,29 @@ namespace PracticeBuilder.DAL
             UserPose pose_to_remove = FindUserPose(practice, pose);
             practice.Poses.Remove(pose_to_remove);
         }
+
+        public void EditPoseName(UserPose pose, string new_name)
+        {
+            pose.Name = new_name;
+            Context.SaveChanges();
+        }
+
+        public void EditPoseDuration(UserPose pose, int new_duration)
+        {
+            pose.Duration = new_duration;
+            Context.SaveChanges();
+        }
+
+        public void EditPoseSide(UserPose pose, string new_side)
+        {
+            pose.Side = new_side;
+            Context.SaveChanges();
+        }
+
+        /*public void MovePose(Practice practice, UserPose pose_to_move, int new_positon)
+        {
+            List<UserPose> AllPoses = practice.GetAllPoses();
+
+        }*/
     }
 }
