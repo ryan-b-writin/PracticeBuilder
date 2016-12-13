@@ -13,7 +13,7 @@ namespace PracticeBuilder.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult PracticeBuilder()
         {
             ViewBag.Message = "Your application description page.";
 
