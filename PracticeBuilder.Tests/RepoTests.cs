@@ -346,27 +346,47 @@ namespace PracticeBuilder.Tests
         [TestMethod]
         public void RepoNoDuplicateYogiNames()
         {
-            Assert.IsNotNull(null);
+            int count = yogis.Count;
+            Assert.AreEqual(count, 2);
+
+            yogis.Add(new Yogi
+            {
+                YogiID = 2,
+                Name = "first"
+            });
+
+            int new_count = yogis.Count;
+            Assert.AreEqual(count, new_count);
         }
         [TestMethod]
         public void RepoNoDuplicatePracticeNames()
         {
-            Assert.IsNotNull(null);
+            int count = practices.Count;
+            Assert.AreEqual(count, 2);
+
+            practices.Add(new Practice
+            {
+                PracticeID = 3,
+                Name = "first"
+            });
+
+            int new_count = practices.Count;
+            Assert.AreEqual(count, new_count);
         }
         [TestMethod]
         public void RepoNoDuplicateUserPoseNames()
         {
-            Assert.IsNotNull(null);
-        }
-        [TestMethod]
-        public void RepoNoDuplicateBasePoseNames()
-        {
-            Assert.IsNotNull(null);
-        }
-        [TestMethod]
-        public void RepoPoseOrderNumberIsAccurate()
-        {
+            int count = user_poses.Count;
+            Assert.AreEqual(count, 2);
 
+            user_poses.Add(new UserPose
+            {
+                UserPoseID = 5,
+                Name = "first"
+            });
+
+            int new_count = user_poses.Count;
+            Assert.AreEqual(count, new_count);
         }
 
     }
