@@ -32,171 +32,41 @@
 </div>
 
 <!-- current practice -->
-<div class="container">
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>
-                    Name Of Practice
-                </h4>
+<div ng-controller="practiceCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        Name Of Practice
+                    </h4>
+                </div>
+                <table class="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2">Name</th>
+                            <th class="col-xs-2">Duration</th>
+                            <th class="col-xs-2">Side</th>
+                            <th class="col-xs-3">Thumbnail</th>
+                            <th class="col-xs-3">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pose in practice">
+                            <td class="col-xs-2">{{pose.name}}</td>
+                            <td class="col-xs-2">{{pose.breaths}} Breaths</td>
+                            <td class="col-xs-2">{{pose.side}}</td>
+                            <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
+                            <td class="col-xs-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
+                                    View/Edit
+                                </button>
+                                <button class="btn btn-default">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table class="table table-fixed">
-                <thead>
-                    <tr>
-                        <th class="col-xs-2">Name</th>
-                        <th class="col-xs-2">Duration</th>
-                        <th class="col-xs-2">Side</th>
-                        <th class="col-xs-3">Thumbnail</th>
-                        <th class="col-xs-3">Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-xs-2">Triangle</td>
-                        <td class="col-xs-2">8 Breaths</td>
-                        <td class="col-xs-2">R</td>
-                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                        <td class="col-xs-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                View/Edit
-                            </button>
-                            <button class="btn btn-default">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
@@ -210,106 +80,41 @@
                 <h4 class="modal-title" id="myModalLabel">Select A Pose</h4>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="panel panel-default">
-                            <table class="table table-fixed">
-                                <thead>
-                                    <tr>
-                                        <th class="col-xs-2">Name</th>
-                                        <th class="col-xs-2">Duration</th>
-                                        <th class="col-xs-2">Side</th>
-                                        <th class="col-xs-3">Thumbnail</th>
-                                        <th class="col-xs-3">Options</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-xs-2">Triangle</td>
-                                        <td class="col-xs-2">8 Breaths</td>
-                                        <td class="col-xs-2">R</td>
-                                        <td class="col-xs-3"><img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" /></td>
-                                        <td class="col-xs-3"><button class="btn btn-default">Add</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div ng-controller="practiceCtrl">
+                    <div class="container">
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>
+                                        Name Of Practice
+                                    </h4>
+                                </div>
+                                <table class="table table-fixed">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-xs-2">Name</th>
+                                            <th class="col-xs-2">Duration</th>
+                                            <th class="col-xs-2">Side</th>
+                                            <th class="col-xs-3">Thumbnail</th>
+                                            <th class="col-xs-3">Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="pose in practice">
+                                            <td class="col-xs-2">{{pose.name}}</td>
+                                            <td class="col-xs-2">{{pose.breaths}} Breaths</td>
+                                            <td class="col-xs-2">{{pose.side}}</td>
+                                            <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
+                                            <td class="col-xs-3">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
+                                                    View/Edit
+                                                </button>
+                                                <button class="btn btn-default">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
