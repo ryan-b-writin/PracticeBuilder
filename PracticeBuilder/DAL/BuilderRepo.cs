@@ -118,8 +118,23 @@ namespace PracticeBuilder.DAL
 
         public List<BasePose> GetBasePoses()
         {
+           
             return Context.BasePoses.ToList();
         }
+
+        internal void GenereateUser(string UserId)
+        {
+            ApplicationUser newUser = Context.Users.FirstOrDefault(u => u.Id == UserId);
+            Yogi newYogi = new Yogi
+            {
+                BaseUser = newUser,
+                Name = newUser.UserName
+            };
+            Context.Yogis.Add(newYogi);
+            Context.SaveChanges();
+        }
+
+        //Context.Users.FirstOrDefault(u => u.UserName == name);
 
         /*public void MovePose(Practice practice, UserPose pose_to_move, int new_positon)
         {
