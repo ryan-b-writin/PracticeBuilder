@@ -3,20 +3,59 @@
 }
 
 <h2>Practice Viewer</h2>
-<div class="containter" ng-controller="practiceCtrl">
-    <div class="row">
-        <div class="col-xs-2">
-            <select ng-model="selectedPractice">
-                <option ng-repeat="practice in practices" value="{{practice.name}}">{{practice.name}}</option">
-            </select>
-        </div>
-        <div class="col-xs-2">
-            <!-- trigger slideshow -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                View As Slideshow
-            </button>
+<div ng-controller="practiceCtrl">
+    <div class="containter">
+        <div class="row">
+            <div class="col-xs-2">
+                <select ng-model="selectedPractice" ng-options="practice.name for practice in practices">
+                </select>
+            </div>
+            <div class="col-xs-2">
+                <!-- trigger slideshow -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    View As Slideshow
+                </button>
+            </div>
         </div>
     </div>
+
+    <!-- current practice -->
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>
+                            {{selectedPractice.name}}
+                        </h4>
+                    </div>
+                    <table class="table table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-2">Name</th>
+                                <th class="col-xs-2">Duration</th>
+                                <th class="col-xs-2">Side</th>
+                                <th class="col-xs-3">Thumbnail</th>
+                                <th class="col-xs-3">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pose in practice">
+                                <td class="col-xs-2">{{pose.name}}</td>
+                                <td class="col-xs-2">{{pose.breaths}} Breaths</td>
+                                <td class="col-xs-2">{{pose.side}}</td>
+                                <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
+                                <td class="col-xs-3">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
+                                        View/Edit
+                                    </button>
+                                    <button class="btn btn-default">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 </div>
 
 <!-- slideshow modal -->
@@ -45,48 +84,6 @@
         </div>
     </div>
 </div>
-
-<!-- current practice -->
-<div ng-controller="practiceCtrl">
-    <div class="container">
-        <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>
-                        Name Of Practice
-                    </h4>
-                </div>
-                <table class="table table-fixed">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-2">Name</th>
-                            <th class="col-xs-2">Duration</th>
-                            <th class="col-xs-2">Side</th>
-                            <th class="col-xs-3">Thumbnail</th>
-                            <th class="col-xs-3">Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="pose in practice">
-                            <td class="col-xs-2">{{pose.name}}</td>
-                            <td class="col-xs-2">{{pose.breaths}} Breaths</td>
-                            <td class="col-xs-2">{{pose.side}}</td>
-                            <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
-                            <td class="col-xs-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                    View/Edit
-                                </button>
-                                <button class="btn btn-default">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!-- view/edit modal -->
 <div class="modal fade" id="viewpose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

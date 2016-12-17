@@ -2,6 +2,7 @@
 
 
 app.controller("practiceCtrl", function ($scope, $http) {
+    
     $scope.practices =
     [
         {
