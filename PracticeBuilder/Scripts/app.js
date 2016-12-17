@@ -38,7 +38,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             ]
         },
         {
-            name: "Practice2",
+            name: "Practice3",
             poses:
             [
                 { name: "Triangle3", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
@@ -54,20 +54,6 @@ app.controller("practiceCtrl", function ($scope, $http) {
             ]
                 },
     ]
-    $scope.practice =
-    [
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" }
-    ];
-
     $scope.basePoses =
     [
         { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
