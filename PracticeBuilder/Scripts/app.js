@@ -7,6 +7,11 @@ app.controller("practiceCtrl", function ($scope, $http) {
         console.log($scope.selectedPractice.poses)
     }
 
+    $scope.remove = function (pose) {
+        var index = $scope.selectedPractice.poses.indexOf(pose);
+            $scope.selectedPractice.poses.splice(index, 1);
+    }
+
     $scope.current = {name:"ok", info:"yes"};
 
     $scope.popUpPose = function (pose) {
