@@ -3,13 +3,11 @@
 }
 
 <h2>Practice Viewer</h2>
-<div class="containter">
+<div class="containter" ng-controller="practiceCtrl">
     <div class="row">
         <div class="col-xs-2">
-            <select name="select">
-                <option value="value1" selected>Select a Practice...</option>
-                <option value="value2">Practice 1</option>
-                <option value="value3">PRactice 2</option>
+            <select ng-model="selectedPractice">
+                <option ng-repeat="practice in practices" value="{{practice.name}}">{{practice.name}}</option">
             </select>
         </div>
         <div class="col-xs-2">
