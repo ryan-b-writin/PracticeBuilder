@@ -2,10 +2,38 @@
 
 
 app.controller("practiceCtrl", function ($scope, $http) {
-    $scope.addToPractice= function (pose) {
-        $scope.selectedPractice.poses.push(pose);
+    $scope.addToPractice = function (pose) {
+        let newPose = {
+            name: "",
+            breaths: "",
+            side: "",
+            thumb: "",
+            info: "",
+        }
+        newPose.name = pose.Name;
+        newPose.breaths = pose.DurationSuggestion;
+        newPose.side = "R";
+        newPose.thumb = pose.ImageURL;
+        newPose.info = pose.Info;
+        $scope.selectedPractice.poses.push(newPose);
         console.log($scope.selectedPractice.poses)
     }
+
+    $scope.fetchBasePoses = function () {
+        let ArrayOfBasePoses = [];
+        $http.get('/api/Practice')
+                .success(function (response) {
+                    console.log(response);
+                    for (singlePose in response) {
+                        ArrayOfBasePoses.push(response[singlePose]);
+                        $scope.basePoses = ArrayOfBasePoses;
+                    }
+                })
+                .error(function (response) {
+                    console.log("error!");
+                })
+    }
+    $scope.basePoses = [];
 
     $scope.remove = function (pose) {
         var index = $scope.selectedPractice.poses.indexOf(pose);
@@ -102,19 +130,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             ]
         }
     ]
-    $scope.basePoses =
-    [
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" },
-        { name: "Triangle", breaths: 8, side: "R", thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" }
-    ];
+   
 });
 
 /*

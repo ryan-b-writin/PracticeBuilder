@@ -11,7 +11,7 @@
                 <select ng-model="selectedPractice" ng-options="practice.name for practice in practices"></select>
             </div>
             <div class="col-xs-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
                     Add Pose
                 </button>
             </div>
@@ -130,10 +130,10 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="pose in basePoses">
-                                                <td class="col-xs-2">{{pose.name}}</td>
-                                                <td class="col-xs-2">{{pose.breaths}} Breaths</td>
-                                                <td class="col-xs-2">{{pose.side}}</td>
-                                                <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
+                                                <td class="col-xs-2">{{pose.Name}}</td>
+                                                <td class="col-xs-2">{{pose.DurationSuggestion}} Breaths</td>
+                                                <td class="col-xs-2">"R"</td>
+                                                <td class="col-xs-3"><img class="thumbnail" src={{pose.ImageURL}} /></td>
                                                 <td class="col-xs-3">
                                                     <button type="button" class="btn btn-primary" ng-click="addToPractice(pose)">
                                                         Add
