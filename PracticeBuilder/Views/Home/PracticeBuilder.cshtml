@@ -121,20 +121,20 @@
                                     <table class="table table-fixed">
                                         <thead>
                                             <tr>
-                                                <th class="col-xs-2">Name</th>
+                                                <th class="col-xs-3">Name</th>
                                                 <th class="col-xs-2">Duration</th>
                                                 <th class="col-xs-2">Side</th>
                                                 <th class="col-xs-3">Thumbnail</th>
-                                                <th class="col-xs-3">Options</th>
+                                                <th class="col-xs-2">Options</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="pose in basePoses">
-                                                <td class="col-xs-2">{{pose.Name}}</td>
+                                                <td class="col-xs-3">{{pose.Name}}</td>
                                                 <td class="col-xs-2">{{pose.DurationSuggestion}} Breaths</td>
                                                 <td class="col-xs-2">"R"</td>
                                                 <td class="col-xs-3"><img class="thumbnail" src={{pose.ImageURL}} /></td>
-                                                <td class="col-xs-3">
+                                                <td class="col-xs-2">
                                                     <button type="button" class="btn btn-primary" ng-click="addToPractice(pose)">
                                                         Add
                                                     </button>
