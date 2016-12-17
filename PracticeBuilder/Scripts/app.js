@@ -2,6 +2,11 @@
 
 
 app.controller("practiceCtrl", function ($scope, $http) {
+    $scope.addToPractice= function (pose) {
+        $scope.selectedPractice.poses.push(pose);
+        console.log($scope.selectedPractice.poses)
+    }
+
     $scope.current = {name:"ok", info:"yes"};
 
     $scope.popUpPose = function (pose) {
