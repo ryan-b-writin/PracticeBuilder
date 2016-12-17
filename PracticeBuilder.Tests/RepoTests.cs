@@ -388,6 +388,17 @@ namespace PracticeBuilder.Tests
             int new_count = user_poses.Count;
             Assert.AreEqual(count, new_count);
         }
+        [TestMethod]
+        public void RepoGetAllBasePoses()
+        {
+            ConnectMocksToDatastore();
+            int expected_pose_count = base_poses.Count;
+            List<BasePose> basePoses = repo.GetBasePoses();
+            int actual_pose_count = basePoses.Count;
+
+            Assert.AreEqual(expected_pose_count, actual_pose_count);
+
+        }
 
     }
 

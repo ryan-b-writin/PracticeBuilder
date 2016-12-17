@@ -116,6 +116,11 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
         }
 
+        public List<BasePose> GetBasePoses()
+        {
+            return Context.BasePoses.ToList();
+        }
+
         /*public void MovePose(Practice practice, UserPose pose_to_move, int new_positon)
         {
             List<UserPose> AllPoses = practice.GetAllPoses();
