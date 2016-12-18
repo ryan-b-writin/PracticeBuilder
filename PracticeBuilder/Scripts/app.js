@@ -58,14 +58,14 @@ app.controller("practiceCtrl", function ($scope, $http) {
                 },
                 {
                     name: "Triangle",
-                    breaths: 8,
-                    side: "R",
+                    breaths: 9,
+                    side: "L",
                     thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
                     info: "looooooooorem ipsum"
                 },
                 {
                     name: "Triangle",
-                    breaths: 8,
+                    breaths: 3,
                     side: "R",
                     thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
                     info: "looooooooorem ipsum"
