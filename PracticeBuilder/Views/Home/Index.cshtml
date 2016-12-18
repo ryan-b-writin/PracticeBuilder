@@ -31,20 +31,20 @@
                     <table class="table table-fixed">
                         <thead>
                             <tr>
-                                <th class="col-xs-2">Name</th>
+                                <th class="col-xs-3">Name</th>
                                 <th class="col-xs-2">Duration</th>
                                 <th class="col-xs-2">Side</th>
                                 <th class="col-xs-3">Thumbnail</th>
-                                <th class="col-xs-3">Options</th>
+                                <th class="col-xs-2">Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="pose in selectedPractice.poses">
-                                <td class="col-xs-2">{{pose.name}}</td>
+                                <td class="col-xs-3">{{pose.name}}</td>
                                 <td class="col-xs-2">{{pose.breaths}} Breaths</td>
                                 <td class="col-xs-2">{{pose.side}}</td>
                                 <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
-                                <td class="col-xs-3">
+                                <td class="col-xs-2">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
                                         View/Edit
                                     </button>
