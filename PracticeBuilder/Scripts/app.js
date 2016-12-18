@@ -2,6 +2,15 @@
 
 
 app.controller("practiceCtrl", function ($scope, $http) {
+
+    //Yogi ----------------------------------------------------------------------------------
+
+    $scope.addPracticeToYogi = function (yogi, name) {
+
+    }
+
+    //Practice -----------------------------------------------------------------------
+
     $scope.addToPractice = function (pose) {
         let newPose = {
             name: "",
@@ -19,32 +28,10 @@ app.controller("practiceCtrl", function ($scope, $http) {
         console.log($scope.selectedPractice.poses)
     }
 
-    $scope.fetchBasePoses = function () {
-        let ArrayOfBasePoses = [];
-        $http.get('/api/Practice')
-                .success(function (response) {
-                    console.log(response);
-                    for (singlePose in response) {
-                        ArrayOfBasePoses.push(response[singlePose]);
-                        $scope.basePoses = ArrayOfBasePoses;
-                    }
-                })
-                .error(function (response) {
-                    console.log("error!");
-                })
-    }
-    $scope.basePoses = [];
-
     $scope.remove = function (pose) {
         var index = $scope.selectedPractice.poses.indexOf(pose);
-            $scope.selectedPractice.poses.splice(index, 1);
+        $scope.selectedPractice.poses.splice(index, 1);
     }
-
-    $scope.current = {name:"ok", info:"yes"};
-
-    $scope.popUpPose = function (pose) {
-        $scope.current = pose;
-    };
 
     $scope.practices =
     [
@@ -130,7 +117,31 @@ app.controller("practiceCtrl", function ($scope, $http) {
             ]
         }
     ]
-   
+
+    //Base Poses --------------------------------------------------------------------------------
+    $scope.basePoses = [];
+
+    $scope.fetchBasePoses = function () {
+        let ArrayOfBasePoses = [];
+        $http.get('/api/Pose')
+                .success(function (response) {
+                    console.log(response);
+                    for (singlePose in response) {
+                        ArrayOfBasePoses.push(response[singlePose]);
+                        $scope.basePoses = ArrayOfBasePoses;
+                    }
+                })
+                .error(function (response) {
+                    console.log("error!");
+                })
+    }
+
+    $scope.current = {name:"ok", info:"yes"};
+
+    $scope.popUpPose = function (pose) {
+        $scope.current = pose;
+    };
+
 });
 
 /*

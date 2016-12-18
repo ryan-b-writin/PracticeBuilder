@@ -180,6 +180,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PoseController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="DAL\BuilderRepo.cs" />
     <Compile Include="DAL\BuilderContext.cs" />
@@ -270,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pose\" />
     <Folder Include="Views\Practice\" />
   </ItemGroup>
   <ItemGroup>

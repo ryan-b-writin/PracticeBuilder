@@ -19,6 +19,7 @@ namespace PracticeBuilder.DAL
             this.Context = new BuilderContext();
         }
 
+        //Yogi methods--------------------------------------------------------------------------------
         public Yogi FindYogi(string yogi)
         {
             Yogi found_yogi = Context.Yogis.FirstOrDefault(u => u.Name == yogi);
@@ -59,7 +60,19 @@ namespace PracticeBuilder.DAL
             found_yogi.Practices.Remove(PracticeToRemove);
             Context.SaveChanges();
         }
+        internal void GenereateUser(string UserId)
+        {
+            ApplicationUser newUser = Context.Users.FirstOrDefault(u => u.Id == UserId);
+            Yogi newYogi = new Yogi
+            {
+                BaseUser = newUser,
+                Name = newUser.UserName
+            };
+            Context.Yogis.Add(newYogi);
+            Context.SaveChanges();
+        }
 
+        //Practice methods----------------------------------------------------------------------
         public UserPose NewUserPose(Practice practice, string base_pose)
         {
             BasePose found_base_pose = FindBasePose(base_pose);
@@ -78,26 +91,31 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
             return new_pose;
         }
-
-        public BasePose FindBasePose(string base_pose)
-        {
-            BasePose found_base_pose = Context.BasePoses.FirstOrDefault(u => u.Name == base_pose);
-            return found_base_pose;
-        }
-
         public UserPose FindUserPose(Practice practice, string pose)
         {
             UserPose found_pose = practice.Poses.FirstOrDefault(u => u.Name == pose);
             return found_pose;
 
         }
-
         public void DeletePose(Practice practice, string pose)
         {
             UserPose pose_to_remove = FindUserPose(practice, pose);
             practice.Poses.Remove(pose_to_remove);
         }
 
+        //Base Pose methods--------------------------------------------------------
+        public BasePose FindBasePose(string base_pose)
+        {
+            BasePose found_base_pose = Context.BasePoses.FirstOrDefault(u => u.Name == base_pose);
+            return found_base_pose;
+        }
+        public List<BasePose> GetBasePoses()
+        {
+
+            return Context.BasePoses.ToList();
+        }
+
+        //User Pose methods ------------------------------------------------------------------------
         public void EditPoseName(UserPose pose, string new_name)
         {
             pose.Name = new_name;
@@ -113,24 +131,6 @@ namespace PracticeBuilder.DAL
         public void EditPoseSide(UserPose pose, string new_side)
         {
             pose.Side = new_side;
-            Context.SaveChanges();
-        }
-
-        public List<BasePose> GetBasePoses()
-        {
-           
-            return Context.BasePoses.ToList();
-        }
-
-        internal void GenereateUser(string UserId)
-        {
-            ApplicationUser newUser = Context.Users.FirstOrDefault(u => u.Id == UserId);
-            Yogi newYogi = new Yogi
-            {
-                BaseUser = newUser,
-                Name = newUser.UserName
-            };
-            Context.Yogis.Add(newYogi);
             Context.SaveChanges();
         }
 
