@@ -12,7 +12,7 @@
             </div>
             <div class="col-xs-2">
                 <!-- trigger slideshow -->
-                <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="count=0">
                     View As Slideshow
                 </button>
             </div>
@@ -77,8 +77,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Previous Pose</button>
-                    <button type="button" class="btn btn-primary" ng-init="count=0" ng-click="count= count + 1 ">Next Pose</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-init="count=0" ng-click="count= count + 1 " ng-hide="count==selectedPractice.poses.length">Next Pose</button>
                 </div>
             </div>
         </div>
