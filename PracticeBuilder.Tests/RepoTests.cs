@@ -228,8 +228,8 @@ namespace PracticeBuilder.Tests
         public void RepoCanAddNewPractice()
         {
             ConnectMocksToDatastore();
-            repo.AddNewPractice("first", "my new practice");
             Yogi found_yogi = repo.FindYogi("first");
+            repo.AddNewPractice(found_yogi, "my new practice");
             Practice found_practice = repo.SearchYogiForPractice("first", "my new practice");
 
             Assert.IsNotNull(found_practice);

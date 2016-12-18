@@ -5,8 +5,18 @@ app.controller("practiceCtrl", function ($scope, $http) {
 
     //Yogi ----------------------------------------------------------------------------------
 
-    $scope.addPracticeToYogi = function (yogi, name) {
-
+    $scope.generateNewPractice = function () {
+        $http({
+            method: "POST",
+            url: "/api/Practice",
+            data: $scope.newPractice
+        })
+        .success(function (response) {
+            console.log("success!", $scope.newPractice);
+        })
+        .error(function (response) {
+            console.log("error!");
+        })
     }
 
     //Practice -----------------------------------------------------------------------
@@ -17,7 +27,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             breaths: "",
             side: "",
             thumb: "",
-            info: "",
+            info: ""
         }
         newPose.name = pose.Name;
         newPose.breaths = pose.DurationSuggestion;

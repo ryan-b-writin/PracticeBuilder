@@ -26,17 +26,16 @@ namespace PracticeBuilder.DAL
             return found_yogi;
         }
 
-        public void AddNewPractice(string yogi, string practice)
+        public void AddNewPractice(Yogi yogi, string practice)
         {
-            Yogi found_yogi = FindYogi(yogi);
-            if (found_yogi.Practices == null)
+            if (yogi.Practices == null)
             {
-                found_yogi.Practices = new List<Practice>();
+                yogi.Practices = new List<Practice>();
             }
-            found_yogi.Practices.Add(
-                new Practice
+            yogi.Practices.Add( new Practice
                 {
-                    Name = practice
+                    Name = practice,
+                    Poses = new List<UserPose>()
                 });
         }
 
