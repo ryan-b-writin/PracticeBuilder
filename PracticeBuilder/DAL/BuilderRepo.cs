@@ -125,6 +125,12 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
         }
 
+        public List<Practice> GetAllPractices(Yogi yogi)
+        {
+            List<Practice> allPractices = yogi.Practices.ToList();
+            return allPractices;
+        }
+
         //Context.Users.FirstOrDefault(u => u.UserName == name);
 
         /*public void MovePose(Practice practice, UserPose pose_to_move, int new_positon)

@@ -22,7 +22,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
     }
 
     //Practice -----------------------------------------------------------------------
-
+   
     $scope.addToPractice = function (pose) {
 
         $http({

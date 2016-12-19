@@ -152,6 +152,16 @@ namespace PracticeBuilder.Tests
                                     PracticeOrder = 2
                                 }
                             }
+                        },
+                        new Practice
+                        {
+                            PracticeID = 3,
+                            Name = "Sample Practice 2"
+                        },
+                        new Practice
+                        {
+                            PracticeID = 4,
+                            Name = "Sample Practice 3"
                         }
                     }
                 }
@@ -237,11 +247,11 @@ namespace PracticeBuilder.Tests
             Assert.IsNotNull(found_practice);
         }
         [TestMethod]
-        public void RepoEnsureMockYogiHasOnePractice()
+        public void RepoEnsureMockYogiHasThreePractices()
         {
             ConnectMocksToDatastore();
             Yogi Test_yogi = repo.FindYogi("second");
-            Assert.AreEqual(1, Test_yogi.Practices.ToList().Count);
+            Assert.AreEqual(3, Test_yogi.Practices.ToList().Count);
         }
         [TestMethod]
         public void RepoCanRemovePractice()
@@ -405,6 +415,17 @@ namespace PracticeBuilder.Tests
             int actual_pose_count = basePoses.Count;
 
             Assert.AreEqual(expected_pose_count, actual_pose_count);
+        }
+        [TestMethod]
+        public void RepoGetAllPractices()
+        {
+            ConnectMocksToDatastore();
+            Yogi found_yogi = repo.FindYogi("second");
+            List<Practice> allPractices = repo.GetAllPractices(found_yogi);
+            int expected_practice_count = 3;
+            int actual_practice_count = allPractices.Count;
+
+            Assert.AreEqual(expected_practice_count, actual_practice_count);
 
         }
 
