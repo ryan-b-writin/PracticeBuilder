@@ -58,15 +58,15 @@
         </div>
 
 <!-- slideshow modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-keydown="count=count+1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" ng-hide="count==selectedPractice.poses.length">{{selectedPractice.name}} | Pose {{count+1}} out of {{selectedPractice.poses.length}}</h4>
-                    <h4 class="modal-title" id="myModalLabel" ng-show="count==selectedPractice.poses.length">Practice complete! You did it!</h4>
+                    <h4 class="modal-title" id="myModalLabel" ng-hide="count>=selectedPractice.poses.length">{{selectedPractice.name}} | Pose {{count+1}} out of {{selectedPractice.poses.length}}</h4>
+                    <h4 class="modal-title" id="myModalLabel" ng-show="count>=selectedPractice.poses.length">Practice complete! You did it!</h4>
                 </div>
-                <div class="modal-body" ng-hide="count==selectedPractice.poses.length">
+                <div class="modal-body" ng-hide="count>=selectedPractice.poses.length">
                     <div class="container">
                         <div class="row">
                             <img class="slideImage col-xs-6" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" />
@@ -77,12 +77,12 @@
                         <p>{{selectedPractice.poses[count].info}}</p>
                     </div>
                 </div>
-                <div class="modal-body" ng-show="count==selectedPractice.poses.length">
+                <div class="modal-body" ng-show="count>=selectedPractice.poses.length">
                     <p class="text-center">Namaste!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-init="count=0" ng-click="count= count + 1 " ng-hide="count==selectedPractice.poses.length">Next Pose</button>
+                    <button type="button" class="btn btn-primary" ng-init="count=0" ng-click="count= count + 1 " ng-hide="count>=selectedPractice.poses.length">Next Pose</button>
                 </div>
             </div>
         </div>
