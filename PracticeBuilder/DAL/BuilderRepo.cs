@@ -36,24 +36,18 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
         }
 
-        public Practice SearchYogiForPractice(string yogi, string practice)
+        public Practice SearchYogiForPractice(Yogi yogi, string practice)
         {
-            Yogi found_yogi = FindYogi(yogi);
-            if (found_yogi.Practices == null)
-            {
-                return null;
-            }
-            Practice found_practice = found_yogi.Practices.FirstOrDefault(u => u.Name == practice);
+            Practice found_practice = yogi.Practices.FirstOrDefault(u => u.Name == practice);
             return found_practice;
 
         }
 
-        public void RemovePracticeFromYogi(string yogi, string practice)
+        public void RemovePracticeFromYogi(Yogi yogi, string practice)
         {
-            Yogi found_yogi = FindYogi(yogi);
             Practice PracticeToRemove = SearchYogiForPractice(yogi, practice);
 
-            found_yogi.Practices.Remove(PracticeToRemove);
+            yogi.Practices.Remove(PracticeToRemove);
             Context.SaveChanges();
         }
         internal void GenereateUser(string UserId)
@@ -70,9 +64,10 @@ namespace PracticeBuilder.DAL
         }
 
         //Practice methods----------------------------------------------------------------------
-        public UserPose NewUserPose(Practice practice, string base_pose)
+        public void NewUserPose(Yogi yogi, PosePost pose_post)
         {
-            BasePose found_base_pose = FindBasePose(base_pose);
+            BasePose found_base_pose = FindBasePose(pose_post.poseName);
+            Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceName);
 
             int duration = found_base_pose.DurationSuggestion;
 
@@ -81,12 +76,11 @@ namespace PracticeBuilder.DAL
                 Name = found_base_pose.Name,
                 Reference = found_base_pose,
                 Duration = duration,
-                PracticeOrder = practice.Poses.ToList().Count
+                PracticeOrder = found_practice.Poses.ToList().Count
             };
 
-            practice.Poses.Add(new_pose);
+            found_practice.Poses.Add(new_pose);
             Context.SaveChanges();
-            return new_pose;
         }
         public UserPose FindUserPose(Practice practice, string pose)
         {
