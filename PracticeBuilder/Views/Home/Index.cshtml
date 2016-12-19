@@ -12,7 +12,7 @@
             </div>
             <div class="col-xs-2">
                 <!-- trigger slideshow -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="count=0">
                     View As Slideshow
                 </button>
             </div>
@@ -56,30 +56,30 @@
                 </div>
             </div>
         </div>
-</div>
 
 <!-- slideshow modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Name Of Practice | Pose 2 out of 10</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <img class="slideImage col-xs-6" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" />
-                        <div class="holdFor text-center col-xs-6"><p>Hold pose for:<br />5</br />Breaths</p></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{selectedPractice.name}} | Pose {{count+1}} out of {{selectedPractice.poses.length}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <img class="slideImage col-xs-6" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" />
+                            <div class="holdFor text-center col-xs-6"><p>Hold pose for:<br />{{selectedPractice.poses[count].breaths}}</br />Breaths</p></div>
+                        </div>
+                    </div>
+                    <div class="poseInfo">
+                        <p>{{selectedPractice.poses[count].info}}</p>
                     </div>
                 </div>
-                <div class="poseInfo">
-                    <p>Trikonasana is usually performed in two parts, facing left, and then facing right. The practitioner begins standing with the feet one leg-length apart, knees unbent, turns the right foot completely to the outside and the left foot less than 45 degrees to the inside, keeping the heels in line with the hips. The arms are spread out to the sides, parallel to the ground, palms facing down; the trunk is extended as far as is comfortable to the right, while the arms remain parallel to the floor. Once the trunk is fully extended to the right, the right arm is dropped so that the right hand reaches the shin (or a block or on the floor) to the front (left side) of the right foot, with the palm down if flexed. The left arm is extended vertically, and the spine and trunk are gently twisted counterclockwise (i.e., upwards to the left, since they're roughly parallel to the floor), using the extended arms as a lever, while the spine remains parallel to the ground. The arms are stretched away from one another, and the head is often turned to gaze at the left thumb, slightly intensifying the spinal twist. Returning to standing, the bend is then repeated to the left.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-init="count=0" ng-click="count= count + 1 " ng-hide="count==selectedPractice.poses.length">Next Pose</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Previous Pose</button>
-                <button type="button" class="btn btn-primary">Next Pose</button>
             </div>
         </div>
     </div>

@@ -2,13 +2,32 @@
 
 
 app.controller("practiceCtrl", function ($scope, $http) {
+
+    //Yogi ----------------------------------------------------------------------------------
+
+    $scope.generateNewPractice = function () {
+        $http({
+            method: "POST",
+            url: "/api/Practice",
+            data: $scope.newPractice
+        })
+        .success(function (response) {
+            console.log("success!", $scope.newPractice);
+        })
+        .error(function (response) {
+            console.log("error!");
+        })
+    }
+
+    //Practice -----------------------------------------------------------------------
+
     $scope.addToPractice = function (pose) {
         let newPose = {
             name: "",
             breaths: "",
             side: "",
             thumb: "",
-            info: "",
+            info: ""
         }
         newPose.name = pose.Name;
         newPose.breaths = pose.DurationSuggestion;
@@ -19,32 +38,10 @@ app.controller("practiceCtrl", function ($scope, $http) {
         console.log($scope.selectedPractice.poses)
     }
 
-    $scope.fetchBasePoses = function () {
-        let ArrayOfBasePoses = [];
-        $http.get('/api/Practice')
-                .success(function (response) {
-                    console.log(response);
-                    for (singlePose in response) {
-                        ArrayOfBasePoses.push(response[singlePose]);
-                        $scope.basePoses = ArrayOfBasePoses;
-                    }
-                })
-                .error(function (response) {
-                    console.log("error!");
-                })
-    }
-    $scope.basePoses = [];
-
     $scope.remove = function (pose) {
         var index = $scope.selectedPractice.poses.indexOf(pose);
-            $scope.selectedPractice.poses.splice(index, 1);
+        $scope.selectedPractice.poses.splice(index, 1);
     }
-
-    $scope.current = {name:"ok", info:"yes"};
-
-    $scope.popUpPose = function (pose) {
-        $scope.current = pose;
-    };
 
     $scope.practices =
     [
@@ -61,14 +58,14 @@ app.controller("practiceCtrl", function ($scope, $http) {
                 },
                 {
                     name: "Triangle",
-                    breaths: 8,
-                    side: "R",
+                    breaths: 9,
+                    side: "L",
                     thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
                     info: "looooooooorem ipsum"
                 },
                 {
                     name: "Triangle",
-                    breaths: 8,
+                    breaths: 3,
                     side: "R",
                     thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
                     info: "looooooooorem ipsum"
@@ -130,7 +127,31 @@ app.controller("practiceCtrl", function ($scope, $http) {
             ]
         }
     ]
-   
+
+    //Base Poses --------------------------------------------------------------------------------
+    $scope.basePoses = [];
+
+    $scope.fetchBasePoses = function () {
+        let ArrayOfBasePoses = [];
+        $http.get('/api/Pose')
+                .success(function (response) {
+                    console.log(response);
+                    for (singlePose in response) {
+                        ArrayOfBasePoses.push(response[singlePose]);
+                        $scope.basePoses = ArrayOfBasePoses;
+                    }
+                })
+                .error(function (response) {
+                    console.log("error!");
+                })
+    }
+
+    $scope.current = {name:"ok", info:"yes"};
+
+    $scope.popUpPose = function (pose) {
+        $scope.current = pose;
+    };
+
 });
 
 /*

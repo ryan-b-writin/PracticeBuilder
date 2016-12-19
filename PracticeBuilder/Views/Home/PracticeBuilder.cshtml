@@ -11,7 +11,7 @@
                 <select ng-model="selectedPractice" ng-options="practice.name for practice in practices"></select>
             </div>
             <div class="col-xs-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
+                <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
                     Add Pose
                 </button>
             </div>
@@ -22,7 +22,7 @@
                     <input type="text" ng-model="newPractice" placeholder="Name of new practice" /> 
                 </div>
                 <div class="col-xs-2">
-                    <button class="btn btn-default" ng-click="generateNewPractice()">Create New Practice</button>
+                    <button class="btn btn-default" ng-hide="!newPractice" ng-click="generateNewPractice()">Create New Practice</button>
                 </div>
             </form>
         </div>
