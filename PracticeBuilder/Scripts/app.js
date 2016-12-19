@@ -6,10 +6,12 @@ app.controller("practiceCtrl", function ($scope, $http) {
     //Yogi ----------------------------------------------------------------------------------
 
     $scope.generateNewPractice = function () {
+        
         $http({
             method: "POST",
             url: "/api/Practice",
-            data: $scope.newPractice
+            data: JSON.stringify({ practiceName: $scope.newPractice }),
+            withCredentials:true
         })
         .success(function (response) {
             console.log("success!", $scope.newPractice);

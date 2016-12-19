@@ -94,7 +94,8 @@ namespace PracticeBuilder.Tests
                 new Yogi
                 {
                     YogiID = 0,
-                    Name = "first"
+                    Name = "first",
+                    Practices = new List<Practice>()
                 },
                 new Yogi
                 {
@@ -229,7 +230,8 @@ namespace PracticeBuilder.Tests
         {
             ConnectMocksToDatastore();
             Yogi found_yogi = repo.FindYogi("first");
-            repo.AddNewPractice(found_yogi, "my new practice");
+            PracticePost ppost = new PracticePost { practiceName = "my new practice" };
+            repo.AddNewPractice(found_yogi, ppost);
             Practice found_practice = repo.SearchYogiForPractice("first", "my new practice");
 
             Assert.IsNotNull(found_practice);

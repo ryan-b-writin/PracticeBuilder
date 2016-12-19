@@ -26,17 +26,14 @@ namespace PracticeBuilder.DAL
             return found_yogi;
         }
 
-        public void AddNewPractice(Yogi yogi, string practice)
+        public void AddNewPractice(Yogi yogi, PracticePost post)
         {
-            if (yogi.Practices == null)
-            {
-                yogi.Practices = new List<Practice>();
-            }
             yogi.Practices.Add( new Practice
                 {
-                    Name = practice,
+                    Name = post.practiceName,
                     Poses = new List<UserPose>()
                 });
+            Context.SaveChanges();
         }
 
         public Practice SearchYogiForPractice(string yogi, string practice)
@@ -65,7 +62,8 @@ namespace PracticeBuilder.DAL
             Yogi newYogi = new Yogi
             {
                 BaseUser = newUser,
-                Name = newUser.UserName
+                Name = newUser.UserName,
+                Practices = new List<Practice>() 
             };
             Context.Yogis.Add(newYogi);
             Context.SaveChanges();
