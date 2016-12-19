@@ -24,7 +24,21 @@ app.controller("practiceCtrl", function ($scope, $http) {
     //Practice -----------------------------------------------------------------------
 
     $scope.addToPractice = function (pose) {
-        let newPose = {
+
+        $http({
+            method: "POST",
+            url: "/api/Pose",
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.name, poseName: $scope.current.name }),
+            withCredentials:true
+        })
+       .success(function (response) {
+           console.log("success!", $scope.newPractice);
+       })
+       .error(function (response) {
+           console.log("error!");
+       })
+
+        /*let newPose = {
             name: "",
             breaths: "",
             side: "",
@@ -39,6 +53,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $scope.selectedPractice.poses.push(newPose);
         console.log($scope.selectedPractice.poses)
     }
+    */
 
     $scope.remove = function (pose) {
         var index = $scope.selectedPractice.poses.indexOf(pose);

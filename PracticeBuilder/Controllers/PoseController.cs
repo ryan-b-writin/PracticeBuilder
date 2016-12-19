@@ -29,7 +29,6 @@ namespace PracticeBuilder.Controllers
                 Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
                 repo.NewUserPose(found_user, post);
             }
-
             return Ok();
         }
 
