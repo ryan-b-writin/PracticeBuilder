@@ -7,8 +7,7 @@
     <div class="containter">
         <div class="row">
             <div class="col-xs-2">
-                <select ng-model="selectedPractice" ng-options="practice.name for practice in practices">
-                </select>
+                <select ng-model="selectedPractice" ng-options="practice.name for practice in practices"></select>
             </div>
             <div class="col-xs-2">
                 <!-- trigger slideshow -->
@@ -20,44 +19,44 @@
     </div>
 
     <!-- current practice -->
-        <div class="container">
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>
-                            {{selectedPractice.name}}
-                        </h4>
-                    </div>
-                    <table class="table table-fixed">
-                        <thead>
-                            <tr>
-                                <th class="col-xs-3">Name</th>
-                                <th class="col-xs-2">Duration</th>
-                                <th class="col-xs-2">Side</th>
-                                <th class="col-xs-3">Thumbnail</th>
-                                <th class="col-xs-2">Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="pose in selectedPractice.poses">
-                                <td class="col-xs-3">{{pose.name}}</td>
-                                <td class="col-xs-2">{{pose.breaths}} Breaths</td>
-                                <td class="col-xs-2">{{pose.side}}</td>
-                                <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
-                                <td class="col-xs-2">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose">
-                                        View/Edit
-                                    </button>
-                                    <button class="btn btn-default" ng-click="remove(pose)">Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        {{selectedPractice.name}}
+                    </h4>
                 </div>
+                <table class="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-3">Name</th>
+                            <th class="col-xs-2">Duration</th>
+                            <th class="col-xs-2">Side</th>
+                            <th class="col-xs-3">Thumbnail</th>
+                            <th class="col-xs-2">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pose in selectedPractice.poses">
+                            <td class="col-xs-3">{{pose.name}}</td>
+                            <td class="col-xs-2">{{pose.breaths}} Breaths</td>
+                            <td class="col-xs-2">{{pose.side}}</td>
+                            <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
+                            <td class="col-xs-2">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose" ng-click="popUpPose(pose)">
+                                    View/Edit
+                                </button>
+                                <button class="btn btn-default" ng-click="remove(pose)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 
-<!-- slideshow modal -->
+    <!-- slideshow modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-keydown="count=count+1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -87,36 +86,37 @@
             </div>
         </div>
     </div>
-</div>
-<!-- view/edit modal -->
-<div class="modal fade" id="viewpose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Triangle</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <form>
-                                <label>Hold:<input type="text" placeholder="5" />Breaths</label>
-                                <label>Side:<input type="text" placeholder="R" /></label>
-                            </form>
-                        </div>
-                        <div class="col-xs-6">
-                            <img class="modalphoto" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" />
+
+    <!-- view/edit modal -->
+    <div class="modal fade" id="viewpose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{current.name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <form>
+                                    <label>Hold:<input type="text" ng-model="current.breaths" />Breaths</label>
+                                    <label>Side:<input type="text" ng-model="current.side" /></label>
+                                </form>
+                            </div>
+                            <div class="col-xs-6">
+                                <img class="modalphoto" src={{current.thumb}} />
+                            </div>
                         </div>
                     </div>
+                    <div>
+                        {{current.info}}
+                    </div>
                 </div>
-                <div>
-                    <p>Trikonasana is usually performed in two parts, facing left, and then facing right. The practitioner begins standing with the feet one leg-length apart, knees unbent, turns the right foot completely to the outside and the left foot less than 45 degrees to the inside, keeping the heels in line with the hips. The arms are spread out to the sides, parallel to the ground, palms facing down; the trunk is extended as far as is comfortable to the right, while the arms remain parallel to the floor. Once the trunk is fully extended to the right, the right arm is dropped so that the right hand reaches the shin (or a block or on the floor) to the front (left side) of the right foot, with the palm down if flexed. The left arm is extended vertically, and the spine and trunk are gently twisted counterclockwise (i.e., upwards to the left, since they're roughly parallel to the floor), using the extended arms as a lever, while the spine remains parallel to the ground. The arms are stretched away from one another, and the head is often turned to gaze at the left thumb, slightly intensifying the spinal twist. Returning to standing, the bend is then repeated to the left.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveChanges(current.breaths, current.side)" data-dismiss="modal">Save changes</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

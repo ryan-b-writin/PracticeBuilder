@@ -152,6 +152,12 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $scope.current = pose;
     };
 
+    //User poses-------------------------------------------------------------------------------------------
+    $scope.saveChanges = function (breaths, side) {
+        $scope.current.breaths = breaths;
+        $scope.current.side = side;
+    }
+
 });
 
 /*
