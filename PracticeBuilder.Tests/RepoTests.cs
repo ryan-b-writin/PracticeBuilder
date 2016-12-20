@@ -304,6 +304,24 @@ namespace PracticeBuilder.Tests
             Assert.AreEqual(expected_num_of_poses, actual_num_of_poses);
 
         }
+        [TestMethod]
+        public void RepoCanFindBasePose()
+        {
+            ConnectMocksToDatastore();
+            BasePose test_pose = new BasePose
+            {
+                Name = "testPose",
+                DurationSuggestion = 4,
+                Info = "test info",
+                TwoSided = false
+            };
+            base_poses.Add(test_pose);
+
+            BasePose found_pose = repo.FindBasePose("testPose");
+
+            Assert.AreEqual(test_pose, found_pose);
+
+        }
         /*[TestMethod]
         public void RepoEnsureMockPosesInOriginalOrder()
         {

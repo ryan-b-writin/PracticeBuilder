@@ -9,22 +9,22 @@ app.controller("practiceCtrl", function ($scope, $http) {
         let arrayOfPractices = [];
         $http.get('/api/Practice')
             .success(function (response) {
-                $scope.practices = response
+                $scope.practices = response;
                 for (singlePractice in response) {
                     console.log('response', response[singlePractice]);
                     let newPractice =
                     {
                         name: response[singlePractice].Name
-                    }
+                    };
                     console.log('new practice', newPractice);
                     arrayOfPractices.push(newPractice);
                 }
-                console.log('array', arrayOfPractices)
+                console.log('array', arrayOfPractices);
                 return arrayOfPractices;
             })
         .error(function (response) {
             console.log('error!');
-        })
+        });
     }
 
     $scope.practices = [];
@@ -77,11 +77,11 @@ app.controller("practiceCtrl", function ($scope, $http) {
     //$scope.practices = GetAllPractices();
 
     $scope.addToPractice = function (pose) {
-
+        console.log($scope.selectedPractice, "selected practice")
         $http({
             method: "POST",
             url: "/api/Pose",
-            data: JSON.stringify({ practiceName: $scope.selectedPractice.name, poseName: $scope.current.name }),
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
             withCredentials:true
         })
        .success(function (response) {
@@ -135,6 +135,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
 
     $scope.popUpPose = function (pose) {
         $scope.current = pose;
+        console.log($scope.current);
     };
 
     //User poses-------------------------------------------------------------------------------------------

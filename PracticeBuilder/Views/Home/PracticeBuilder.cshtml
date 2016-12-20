@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-2">
-                <select ng-model="selectedPractice" ng-options="practice.name for practice in practices"></select>
+                <select ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
             </div>
             <div class="col-xs-2">
                 <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
