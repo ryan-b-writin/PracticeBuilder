@@ -259,8 +259,8 @@ namespace PracticeBuilder.Tests
             ConnectMocksToDatastore();
 
             Yogi Test_yogi = repo.FindYogi("second");
-
-            repo.RemovePracticeFromYogi(Test_yogi, "Sample Practice");
+            PracticePost post = new PracticePost { practiceName = "Sample Practice" };
+            repo.RemovePracticeFromYogi(Test_yogi, post );
 
             Assert.AreEqual(2, Test_yogi.Practices.ToList().Count);
         }

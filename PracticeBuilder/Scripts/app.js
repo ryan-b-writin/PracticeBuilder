@@ -41,6 +41,9 @@ app.controller("practiceCtrl", function ($scope, $http) {
     };
 
     //Practice -----------------------------------------------------------------------
+    $scope.deletePractice = function() {
+        console.log("delete", $scope.selectedPractice.Name);
+    };
 
     $scope.addToPractice = function (pose) {
         console.log($scope.selectedPractice, "selected practice");

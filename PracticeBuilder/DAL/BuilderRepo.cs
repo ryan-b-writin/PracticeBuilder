@@ -43,11 +43,12 @@ namespace PracticeBuilder.DAL
 
         }
 
-        public void RemovePracticeFromYogi(Yogi yogi, string practice)
+        public void RemovePracticeFromYogi(Yogi yogi, PracticePost post)
         {
-            Practice PracticeToRemove = SearchYogiForPractice(yogi, practice);
+            Practice PracticeToRemove = SearchYogiForPractice(yogi, post.practiceName);
 
             yogi.Practices.Remove(PracticeToRemove);
+            Context.Practices.Remove(PracticeToRemove);
             Context.SaveChanges();
         }
         internal void GenereateUser(string UserId)
