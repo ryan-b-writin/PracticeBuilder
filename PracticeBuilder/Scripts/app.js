@@ -92,7 +92,19 @@ app.controller("practiceCtrl", function ($scope, $http) {
     $scope.remove = function (pose) {
         /*var index = $scope.selectedPractice.poses.indexOf(pose);
         $scope.selectedPractice.poses.splice(index, 1);*/
-
+        console.log($scope.selectedPractice, "selected practice");
+        $http({
+            method: "DELETE",
+            url: "/api/Pose",
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
+            withCredentials: true
+        })
+       .success(function (response) {
+           console.log("success!", $scope.newPractice);
+       })
+       .error(function (response) {
+           console.log("error!");
+       });
     }
 
 });
