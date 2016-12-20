@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PoseController.cs" />
     <Compile Include="Controllers\PracticeController.cs" />
+    <Compile Include="Controllers\UserPoseController.cs" />
     <Compile Include="DAL\BuilderRepo.cs" />
     <Compile Include="DAL\BuilderContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -276,6 +277,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Pose\" />
     <Folder Include="Views\Practice\" />
+    <Folder Include="Views\UserPose\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

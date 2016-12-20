@@ -93,6 +93,7 @@ namespace PracticeBuilder.DAL
             Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceName);
             UserPose pose_to_remove = FindUserPose(found_practice, pose_post.poseName);
             found_practice.Poses.Remove(pose_to_remove);
+            Context.UserPoses.Remove(pose_to_remove);
             Context.SaveChanges();
         }
 

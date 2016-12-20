@@ -87,15 +87,15 @@ app.controller("practiceCtrl", function ($scope, $http) {
     $scope.saveChanges = function (breaths, side) {
         $scope.current.breaths = breaths;
         $scope.current.side = side;
-    }
+    };
 
     $scope.remove = function (pose) {
         /*var index = $scope.selectedPractice.poses.indexOf(pose);
         $scope.selectedPractice.poses.splice(index, 1);*/
-        console.log($scope.selectedPractice, "selected practice");
+        console.log($scope.selectedPractice, "delete from selected practice");
         $http({
-            method: "DELETE",
-            url: "/api/Pose",
+            method: "POST",
+            url: "/api/UserPose",
             data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
             withCredentials: true
         })
@@ -105,6 +105,6 @@ app.controller("practiceCtrl", function ($scope, $http) {
        .error(function (response) {
            console.log("error!");
        });
-    }
+    };
 
 });
