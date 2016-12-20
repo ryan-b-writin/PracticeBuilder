@@ -19,7 +19,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
                     console.log('new practice', newPractice);
                     arrayOfPractices.push(newPractice);
                 }*/
-                console.log(response);
+                console.log(response, "response");
                 //return arrayOfPractices;
             })
         .error(function (response) {

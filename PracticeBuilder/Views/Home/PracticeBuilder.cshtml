@@ -48,11 +48,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="pose in selectedPractice.poses">
-                                <td class="col-xs-2">{{pose.name}}</td>
-                                <td class="col-xs-2">{{pose.breaths}} Breaths</td>
-                                <td class="col-xs-2">{{pose.side}}</td>
-                                <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
+                            <tr ng-repeat="pose in selectedPractice.Poses">
+                                <td class="col-xs-2">{{pose.Name}}</td>
+                                <td class="col-xs-2">{{pose.Duration}} Breaths</td>
+                                <td class="col-xs-2">{{pose.Side}}</td>
+                                <td class="col-xs-3"><img class="thumbnail" src={{pose.Reference.ImageURL}} /></td>
                                 <td class="col-xs-3">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose" ng-click="popUpPose(pose)">
                                         View/Edit
@@ -72,29 +72,29 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{current.name}}</h4>
+                    <h4 class="modal-title" id="myModalLabel">{{current.Name}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-6">
                                 <form>
-                                    <label>Hold:<input type="text" ng-model="current.breaths" />Breaths</label>
-                                    <label>Side:<input type="text" ng-model="current.side" /></label>
+                                    <label>Hold:<input type="text" ng-model="current.Duration" />Breaths</label>
+                                    <label>Side:<input type="text" ng-model="current.Side" /></label>
                                 </form>
                             </div>
                             <div class="col-xs-6">
-                                <img class="modalphoto" src={{current.thumb}} />
+                                <img class="modalphoto" src={{current.ImageURL}} />
                             </div>
                         </div>
                     </div>
                     <div>
-                        {{current.info}}
+                        {{current.Info}}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="saveChanges(current.breaths, current.side)" data-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveChanges(current.Duration, current.Side)" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4>
-                                            {{selectedPractice.name}}
+                                            {{selectedPractice.Name}}
                                         </h4>
                                     </div>
                                     <table class="table table-fixed">
