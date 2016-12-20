@@ -2,12 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>Practice Viewer</h2>
+<h2 class="text-center">Practice Viewer</h2>
 <div ng-controller="practiceCtrl">
     <div class="containter">
         <div class="row">
             <div class="col-xs-2">
-                <select ng-model="selectedPractice" ng-options="practice.name for practice in practices"></select>
+                <select ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
             </div>
             <div class="col-xs-2">
                 <!-- trigger slideshow -->
@@ -22,12 +22,12 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading tableHead">
                     <h4>
-                        {{selectedPractice.name}}
+                        {{selectedPractice.Name}}
                     </h4>
                 </div>
-                <table class="table table-fixed">
+                <table class="table table-fixed tableBody">
                     <thead>
                         <tr>
                             <th class="col-xs-3">Name</th>
@@ -38,10 +38,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pose in selectedPractice.poses">
-                            <td class="col-xs-3">{{pose.name}}</td>
-                            <td class="col-xs-2">{{pose.breaths}} Breaths</td>
-                            <td class="col-xs-2">{{pose.side}}</td>
+                        <tr ng-repeat="pose in selectedPractice.Poses">
+                            <td class="col-xs-3">{{pose.Name}}</td>
+                            <td class="col-xs-2">{{pose.Duration}} Breaths</td>
+                            <td class="col-xs-2">{{pose.Side}}</td>
                             <td class="col-xs-3"><img class="thumbnail" src={{pose.thumb}} /></td>
                             <td class="col-xs-2">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose" ng-click="popUpPose(pose)">

@@ -45,3 +45,28 @@ textarea {
   float: left;
   border-bottom-width: 0;
 }
+
+.navbar-custom {
+    background-color:#f48342;
+    color:#364745;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #364745;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#364745;
+}
+
+body{
+    background-image: url(Images/temple.jpg);
+}
+
+.tableHead {
+    background-color: #f48342
+}

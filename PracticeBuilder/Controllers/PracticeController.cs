@@ -14,21 +14,91 @@ namespace PracticeBuilder.Controllers
     {
         BuilderRepo repo = new BuilderRepo();
         // GET: Practice
-        public IEnumerable<BasePose> Get()
+        public IEnumerable<Practice> Get()
         {
-            return repo.GetBasePoses();
-        }
-        public void Post([FromBody]string practiceName)
-        {
-
-            if (ModelState.IsValid && User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 string user_id = User.Identity.GetUserId();
                 ApplicationUser found_app_user = repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
                 Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
-                repo.AddNewPractice(found_user, practiceName);
+                return repo.GetAllPractices(found_user);
             }
+            else
+            {
+                return new List<Practice>
+                {
+                    new Practice
+                    {
+                        Name = "Sample Practice 1",
+                        Poses = new List<UserPose>
+                        {
+                            new UserPose
+                            {
+                                Name = "Sample Pose",
+                                Duration = 4,
+                                Reference = new BasePose
+                                {
+                                    Name = "Sample Pose",
+                                    TwoSided = false,
+                                    DurationSuggestion = 4,
+                                    Info = "lorem ipsum"
+                                }
+                            }
+                        }
+                    },
+                    new Practice
+                    {
+                        Name = "Sample Practice 2",
+                        Poses = new List<UserPose>
+                        {
+                            new UserPose
+                            {
+                                Name = "Sample Pose",
+                                Duration = 4,
+                                Reference = new BasePose
+                                {
+                                    Name = "Sample Pose",
+                                    TwoSided = false,
+                                    DurationSuggestion = 4,
+                                    Info = "lorem ipsum"
+                                }
+                            }
+                        }
+                    },
+                    new Practice
+                    {
+                        Name = "Sample Practice 3",
+                        Poses = new List<UserPose>
+                        {
+                            new UserPose
+                            {
+                                Name = "Sample Pose",
+                                Duration = 4,
+                                Reference = new BasePose
+                                {
+                                    Name = "Sample Pose",
+                                    TwoSided = false,
+                                    DurationSuggestion = 4,
+                                    Info = "lorem ipsum"
+                                }
+                            }
+                        }
+                    }
+                };
+            };
+        }
 
+        [System.Web.Mvc.HttpPost]
+        public IHttpActionResult Post([FromBody]PracticePost post)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string user_id = User.Identity.GetUserId();
+                ApplicationUser found_app_user = repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+                Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
+                repo.AddNewPractice(found_user, post);
+            }
+            return Ok();
         }
 
     }

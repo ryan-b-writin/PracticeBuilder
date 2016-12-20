@@ -3,12 +3,12 @@
     ViewBag.Title = "PracticeBuilder";
 }
 
-<h2>PracticeBuilder</h2>
+<h2 class="text-center">Practice Builder</h2>
 <div ng-controller="practiceCtrl">
     <div class="container">
         <div class="row">
             <div class="col-xs-2">
-                <select ng-model="selectedPractice" ng-options="practice.name for practice in practices"></select>
+                <select ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
             </div>
             <div class="col-xs-2">
                 <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
@@ -32,9 +32,9 @@
         <div class="container">
             <div class="row">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading tableHead">
                         <h4>
-                            {{selectedPractice.name}}
+                            {{selectedPractice.Name}}
                         </h4>
                     </div>
                     <table class="table table-fixed">
