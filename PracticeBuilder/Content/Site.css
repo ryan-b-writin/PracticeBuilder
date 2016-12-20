@@ -47,7 +47,7 @@ textarea {
 }
 
 .navbar-custom {
-    background-color:#b1efe9;
+    background-color:#f48342;
     color:#364745;
     border-radius:0;
 }
@@ -65,4 +65,8 @@ textarea {
 
 body{
     background-image: url(Images/temple.jpg);
+}
+
+.tableHead {
+    background-color: #f48342
 }

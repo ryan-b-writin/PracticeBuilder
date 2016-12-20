@@ -3,10 +3,40 @@
 
 app.controller("practiceCtrl", function ($scope, $http) {
 
+    //init ---------------------------------------------------------------------------
+
+    GetAllPractices = function () {
+        let arrayOfPractices = [];
+        $http.get('/api/Practice')
+            .success(function (response) {
+                $scope.practices = response
+                for (singlePractice in response) {
+                    console.log('response', response[singlePractice]);
+                    let newPractice =
+                    {
+                        name: response[singlePractice].Name
+                    }
+                    console.log('new practice', newPractice);
+                    arrayOfPractices.push(newPractice);
+                }
+                console.log('array', arrayOfPractices)
+                return arrayOfPractices;
+            })
+        .error(function (response) {
+            console.log('error!');
+        })
+    }
+
+    $scope.practices = [];
+
+    GetAllPractices()
+
+    //GetAllPractices();
+
     //Yogi ----------------------------------------------------------------------------------
 
     $scope.generateNewPractice = function () {
-        
+        console.log("generating");
         $http({
             method: "POST",
             url: "/api/Practice",
@@ -23,6 +53,29 @@ app.controller("practiceCtrl", function ($scope, $http) {
 
     //Practice -----------------------------------------------------------------------
    
+    /*GetAllPractices = function () {
+        let ArrayOfPractices = [];
+        $http.get('/api/Practice')
+            .success(function (response) {
+                for (singlePractice in response) {
+                    console.log('response', response[singlePractice]);
+                    let newPractice =
+                    {
+                        name: response[singlePractice].Name
+                    }
+                    console.log('new practice', newPractice);
+                    ArrayOfPractices.push(newPractice);
+                }
+                console.log('array', ArrayOfPractices)
+                return ArrayOfPractices;
+            })
+        .error(function (response) {
+            console.log('error!');
+        })
+    }*/
+
+    //$scope.practices = GetAllPractices();
+
     $scope.addToPractice = function (pose) {
 
         $http({
@@ -36,7 +89,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
        })
        .error(function (response) {
            console.log("error!");
-       })
+       });
 
         /*let newPose = {
             name: "",
@@ -52,98 +105,13 @@ app.controller("practiceCtrl", function ($scope, $http) {
         newPose.info = pose.Info;
         $scope.selectedPractice.poses.push(newPose);
         console.log($scope.selectedPractice.poses)
+        */
     }
-    */
 
     $scope.remove = function (pose) {
         var index = $scope.selectedPractice.poses.indexOf(pose);
         $scope.selectedPractice.poses.splice(index, 1);
     }
-
-    $scope.practices =
-    [
-        {
-            name: "Practice1",
-            poses:
-            [
-                {
-                    name: "Triangle",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                },
-                {
-                    name: "Triangle",
-                    breaths: 9,
-                    side: "L",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                },
-                {
-                    name: "Triangle",
-                    breaths: 3,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                }
-            ]
-        },
-        {
-            name: "Practice2",
-            poses:
-            [
-                {
-                    name: "Triangle2",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                },
-                {
-                    name: "Triangle2",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                },
-                {
-                    name: "Triangle2",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                }
-            ]
-        },
-        {
-            name: "Practice3",
-            poses:
-            [
-                {
-                    name: "Triangle3",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                },
-                {
-                    name: "Triangle3",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                },
-                {
-                    name: "Triangle3",
-                    breaths: 8,
-                    side: "R",
-                    thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
-                    info: "looooooooorem ipsum"
-                }
-            ]
-        }
-    ]
 
     //Base Poses --------------------------------------------------------------------------------
     $scope.basePoses = [];
@@ -175,17 +143,88 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $scope.current.side = side;
     }
 
-});
+    });
 
-/*
-app.controller("slideCtrl", function ($scope, $http) {
-
-});
-
-app.controller("formCtrl", function ($scope, $http) {
-
-});
-
-app.controller.("basePoseCtrl", function($scope, $http){
-
-});*/
+    /*[
+       {
+           name: "Practice1",
+           poses:
+           [
+               {
+                   name: "Triangle",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               },
+               {
+                   name: "Triangle",
+                   breaths: 9,
+                   side: "L",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               },
+               {
+                   name: "Triangle",
+                   breaths: 3,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               }
+           ]
+       },
+       {
+           name: "Practice2",
+           poses:
+           [
+               {
+                   name: "Triangle2",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               },
+               {
+                   name: "Triangle2",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               },
+               {
+                   name: "Triangle2",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               }
+           ]
+       },
+       {
+           name: "Practice3",
+           poses:
+           [
+               {
+                   name: "Triangle3",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               },
+               {
+                   name: "Triangle3",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               },
+               {
+                   name: "Triangle3",
+                   breaths: 8,
+                   side: "R",
+                   thumb: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg",
+                   info: "looooooooorem ipsum"
+               }
+           ]
+       }
+   ]*/
