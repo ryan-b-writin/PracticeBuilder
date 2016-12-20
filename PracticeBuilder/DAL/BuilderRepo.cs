@@ -117,16 +117,28 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
         }
 
-        public void EditPoseDuration(UserPose pose, int new_duration)
+        public void EditPoseDuration(Yogi yogi, PosePut put)
         {
-            pose.Duration = new_duration;
-            Context.SaveChanges();
+            Practice found_practice = SearchYogiForPractice(yogi, put.practiceName);
+            UserPose found_pose = FindUserPose(found_practice, put.poseName);
+
+            if (found_pose.Duration != put.poseDuration)
+            {
+                found_pose.Duration = put.poseDuration;
+                Context.SaveChanges();
+            }
         }
 
-        public void EditPoseSide(UserPose pose, string new_side)
+        public void EditPoseSide(Yogi yogi, PosePut put)
         {
-            pose.Side = new_side;
-            Context.SaveChanges();
+            Practice found_practice = SearchYogiForPractice(yogi, put.practiceName);
+            UserPose found_pose = FindUserPose(found_practice, put.poseName);
+
+            if (found_pose.Side != put.poseSide)
+            {
+                found_pose.Side = put.poseSide;
+                Context.SaveChanges();
+            }
         }
 
         public List<Practice> GetAllPractices(Yogi yogi)

@@ -196,6 +196,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BasePose.cs" />
+    <Compile Include="Models\PosePut.cs" />
     <Compile Include="Models\PosePost.cs" />
     <Compile Include="Models\PracticePost.cs" />
     <Compile Include="Models\IdentityModels.cs" />

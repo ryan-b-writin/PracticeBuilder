@@ -371,12 +371,19 @@ namespace PracticeBuilder.Tests
             Yogi found_yogi = repo.FindYogi("second");
             Practice found_practice = repo.SearchYogiForPractice(found_yogi, "Sample Practice");
             UserPose found_pose = repo.FindUserPose(found_practice, "Sample User Pose");
+            PosePut put = new PosePut
+            {
+                poseDuration = 20,
+                poseName = "Sample User Pose",
+                practiceName = "Sample Practice",
+                poseSide = "R"
+            };
 
-            repo.EditPoseName(found_pose, "new name");
-            repo.EditPoseDuration(found_pose, 20);
-            repo.EditPoseSide(found_pose, "R");
+            //repo.EditPoseName(found_pose, "new name");
+            repo.EditPoseDuration(found_yogi, put);
+            repo.EditPoseSide(found_yogi, put);
 
-            Assert.AreEqual(found_pose.Name, "new name");
+            //Assert.AreEqual(found_pose.Name, "new name");
             Assert.AreEqual(found_pose.Duration, 20);
             Assert.AreEqual(found_pose.Side, "R");
         }
