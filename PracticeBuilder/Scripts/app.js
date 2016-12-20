@@ -34,6 +34,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
         .success(function (response) {
             console.log("success!", $scope.newPractice);
+            GetAllPractices();
         })
         .error(function (response) {
             console.log("error!");
@@ -51,6 +52,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
        .success(function (response) {
            console.log("success!");
+           GetAllPractices();
        })
        .error(function (response) {
            console.log("error!");
@@ -67,6 +69,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
        .success(function (response) {
            console.log("success!", $scope.newPractice);
+           GetAllPractices();
        })
        .error(function (response) {
            console.log("error!");
@@ -99,14 +102,29 @@ app.controller("practiceCtrl", function ($scope, $http) {
     };
 
     //User poses-------------------------------------------------------------------------------------------
-    $scope.saveChanges = function (breaths, side) {
-        $scope.current.breaths = breaths;
-        $scope.current.side = side;
+    $scope.saveChanges = function () {
+        console.log($scope.current, "Editing Pose");
+        $http({
+            method: "PUT",
+            url: "/api/Pose",
+            data: JSON.stringify({
+                practiceName: $scope.selectedPractice.Name,
+                poseName: $scope.current.Name,
+                poseSide: $scope.current.Side,
+                poseDuration: $scope.current.Duration
+            }),
+            withCredentials: true
+        })
+       .success(function (response) {
+           console.log("success!", $scope.newPractice);
+       })
+       .error(function (response) {
+           console.log("error!");
+       });
     };
 
     $scope.remove = function (pose) {
-        /*var index = $scope.selectedPractice.poses.indexOf(pose);
-        $scope.selectedPractice.poses.splice(index, 1);*/
+        var index = $scope.selectedPractice.poses.indexOf(pose);
         console.log($scope.selectedPractice, "delete from selected practice");
         $http({
             method: "POST",
@@ -116,6 +134,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
        .success(function (response) {
            console.log("success!", $scope.newPractice);
+           $scope.selectedPractice.poses.splice(index, 1);
        })
        .error(function (response) {
            console.log("error!");

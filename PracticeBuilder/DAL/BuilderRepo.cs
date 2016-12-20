@@ -122,11 +122,9 @@ namespace PracticeBuilder.DAL
             Practice found_practice = SearchYogiForPractice(yogi, put.practiceName);
             UserPose found_pose = FindUserPose(found_practice, put.poseName);
 
-            if (found_pose.Duration != put.poseDuration)
-            {
-                found_pose.Duration = put.poseDuration;
-                Context.SaveChanges();
-            }
+            found_pose.Duration = put.poseDuration;
+  
+            Context.SaveChanges();
         }
 
         public void EditPoseSide(Yogi yogi, PosePut put)
@@ -137,8 +135,8 @@ namespace PracticeBuilder.DAL
             if (found_pose.Side != put.poseSide)
             {
                 found_pose.Side = put.poseSide;
-                Context.SaveChanges();
             }
+            Context.SaveChanges();
         }
 
         public List<Practice> GetAllPractices(Yogi yogi)
