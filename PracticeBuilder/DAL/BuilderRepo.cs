@@ -88,10 +88,12 @@ namespace PracticeBuilder.DAL
             return found_pose;
 
         }
-        public void DeletePose(Practice practice, string pose)
+        public void DeletePose(Yogi yogi, PosePost pose_post)
         {
-            UserPose pose_to_remove = FindUserPose(practice, pose);
-            practice.Poses.Remove(pose_to_remove);
+            Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceName);
+            UserPose pose_to_remove = FindUserPose(found_practice, pose_post.poseName);
+            found_practice.Poses.Remove(pose_to_remove);
+            Context.SaveChanges();
         }
 
         //Base Pose methods--------------------------------------------------------

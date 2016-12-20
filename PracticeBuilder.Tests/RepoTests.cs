@@ -262,7 +262,7 @@ namespace PracticeBuilder.Tests
 
             repo.RemovePracticeFromYogi(Test_yogi, "Sample Practice");
 
-            Assert.AreEqual(0, Test_yogi.Practices.ToList().Count);
+            Assert.AreEqual(2, Test_yogi.Practices.ToList().Count);
         }
         [TestMethod]
         public void RepoCanGenerateUserPoseFromBasePose()
@@ -296,7 +296,8 @@ namespace PracticeBuilder.Tests
             ConnectMocksToDatastore();
             Yogi found_yogi = repo.FindYogi("second");
             Practice found_practice = repo.SearchYogiForPractice(found_yogi, "Sample Practice");
-            repo.DeletePose(found_practice, "Sample User Pose");
+            PosePost pose_post = new PosePost { poseName = "Sample User Pose", practiceName = "Sample Practice" };
+            repo.DeletePose(found_yogi, pose_post);
 
             int expected_num_of_poses = 2;
             int actual_num_of_poses = found_practice.Poses.ToList().Count;
