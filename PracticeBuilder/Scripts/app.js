@@ -124,7 +124,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
     };
 
     $scope.remove = function (pose) {
-        var index = $scope.selectedPractice.poses.indexOf(pose);
+        var index = $scope.selectedPractice.Poses.indexOf(pose);
         console.log($scope.selectedPractice, "delete from selected practice");
         $http({
             method: "POST",
@@ -134,7 +134,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
        .success(function (response) {
            console.log("success!", $scope.newPractice);
-           $scope.selectedPractice.poses.splice(index, 1);
+           $scope.selectedPractice.Poses.splice(index, 1);
        })
        .error(function (response) {
            console.log("error!");
