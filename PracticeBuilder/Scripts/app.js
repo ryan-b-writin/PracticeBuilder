@@ -42,7 +42,19 @@ app.controller("practiceCtrl", function ($scope, $http) {
 
     //Practice -----------------------------------------------------------------------
     $scope.deletePractice = function() {
-        console.log("delete", $scope.selectedPractice.Name);
+        console.log($scope.selectedPractice.Name, "delete selected practice");
+        $http({
+            method: "POST",
+            url: "/api/ManagePractice",
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name }),
+            withCredentials: true
+        })
+       .success(function (response) {
+           console.log("success!");
+       })
+       .error(function (response) {
+           console.log("error!");
+       });
     };
 
     $scope.addToPractice = function (pose) {
