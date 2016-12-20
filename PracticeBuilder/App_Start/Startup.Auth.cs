@@ -61,13 +61,13 @@ namespace PracticeBuilder
             //   appId: "",
             //   appSecret: "");
 
-            System.Configuration.Configuration rootWebConfig1 =
+           /* System.Configuration.Configuration rootWebConfig1 =
                 System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~/Scripts/Data/data.config");
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
                ClientId = rootWebConfig1.AppSettings.Settings["GoogClientID"].Value,
                ClientSecret = rootWebConfig1.AppSettings.Settings["GoogClientSecret"].Value
-            });
+            }); */
         }
     }
 }

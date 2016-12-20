@@ -10,7 +10,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $http.get('/api/Practice')
             .success(function (response) {
                 $scope.practices = response;
-                for (singlePractice in response) {
+                /*for (singlePractice in response) {
                     console.log('response', response[singlePractice]);
                     let newPractice =
                     {
@@ -18,9 +18,9 @@ app.controller("practiceCtrl", function ($scope, $http) {
                     };
                     console.log('new practice', newPractice);
                     arrayOfPractices.push(newPractice);
-                }
-                console.log('array', arrayOfPractices);
-                return arrayOfPractices;
+                }*/
+                console.log(response);
+                //return arrayOfPractices;
             })
         .error(function (response) {
             console.log('error!');
