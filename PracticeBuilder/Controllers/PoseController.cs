@@ -31,6 +31,19 @@ namespace PracticeBuilder.Controllers
             }
             return Ok();
         }
+        [System.Web.Mvc.HttpPut]
+        public IHttpActionResult Put([FromBody]PosePut put)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string user_id = User.Identity.GetUserId();
+                ApplicationUser found_app_user = repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+                Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
+                repo.EditPose(found_user, put);
+                //repo.EditPoseSide(found_user, put);
+            }
+            return Ok();
+        }
 
     }
 

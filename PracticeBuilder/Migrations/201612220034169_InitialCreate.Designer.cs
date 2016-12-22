@@ -13,7 +13,7 @@ namespace PracticeBuilder.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201612191912563_InitialCreate"; }
+            get { return "201612220034169_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

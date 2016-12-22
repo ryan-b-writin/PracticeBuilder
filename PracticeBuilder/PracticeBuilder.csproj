@@ -189,13 +189,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612191912563_InitialCreate.cs" />
-    <Compile Include="Migrations\201612191912563_InitialCreate.Designer.cs">
-      <DependentUpon>201612191912563_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201612220034169_InitialCreate.cs" />
+    <Compile Include="Migrations\201612220034169_InitialCreate.Designer.cs">
+      <DependentUpon>201612220034169_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612220047570_RemoveReferenceReq.cs" />
+    <Compile Include="Migrations\201612220047570_RemoveReferenceReq.Designer.cs">
+      <DependentUpon>201612220047570_RemoveReferenceReq.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BasePose.cs" />
+    <Compile Include="Models\PosePut.cs" />
     <Compile Include="Models\PosePost.cs" />
     <Compile Include="Models\PracticePost.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -220,9 +225,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
-    <None Include="Properties\PublishProfiles\PracticeBuilder20161215063255 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\PracticeBuilder20161221073826 - Web Deploy.pubxml" />
     <None Include="Scripts\Data\data.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -290,8 +296,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612191912563_InitialCreate.resx">
-      <DependentUpon>201612191912563_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612220034169_InitialCreate.resx">
+      <DependentUpon>201612220034169_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612220047570_RemoveReferenceReq.resx">
+      <DependentUpon>201612220047570_RemoveReferenceReq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
