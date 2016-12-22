@@ -380,8 +380,8 @@ namespace PracticeBuilder.Tests
             };
 
             //repo.EditPoseName(found_pose, "new name");
-            repo.EditPoseDuration(found_yogi, put);
-            repo.EditPoseSide(found_yogi, put);
+            //repo.EditPoseDuration(found_yogi, put);
+           // repo.EditPoseSide(found_yogi, put);
 
             //Assert.AreEqual(found_pose.Name, "new name");
             Assert.AreEqual(found_pose.Duration, 20);
