@@ -25,19 +25,5 @@ namespace PracticeBuilder.Controllers
             }
             return Ok();
         }
-        public IEnumerable<UserPose> Get([FromBody]PracticePost post)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                string user_id = User.Identity.GetUserId();
-                ApplicationUser found_app_user = repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
-                Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
-                return repo.GetAllUserPoses(found_user, post);
-            }
-            else
-            {
-                return null;
-            }
-        }
     }
 }
