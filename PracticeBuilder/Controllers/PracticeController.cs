@@ -8,12 +8,15 @@ using PracticeBuilder.DAL;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 
+// GET: All Practices attached to user
+//POST: Add New Practice to user
 namespace PracticeBuilder.Controllers
 {
     public class PracticeController : ApiController
     {
         BuilderRepo repo = new BuilderRepo();
-        // GET: Practice
+
+        // GET: All Practices attached to user
         public IEnumerable<Practice> Get()
         {
             if (User.Identity.IsAuthenticated)
@@ -23,6 +26,7 @@ namespace PracticeBuilder.Controllers
                 Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
                 return repo.GetAllPractices(found_user);
             }
+            //If No User Is logged in, return sample practice data to fill out table
             else
             {
                 return new List<Practice>
@@ -88,6 +92,7 @@ namespace PracticeBuilder.Controllers
             };
         }
 
+        //POST: Add New Practice to user
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult Post([FromBody]PracticePost post)
         {
@@ -100,6 +105,5 @@ namespace PracticeBuilder.Controllers
             }
             return Ok();
         }
-
     }
 }

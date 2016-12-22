@@ -20,21 +20,31 @@ namespace PracticeBuilder.DAL
         }
 
         //Yogi methods--------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------
+
+
         public Yogi FindYogi(string yogi)
         {
             Yogi found_yogi = Context.Yogis.FirstOrDefault(u => u.Name == yogi);
             return found_yogi;
         }
 
-        public void AddNewPractice(Yogi yogi, PracticePost post)
+        internal void GenereateUser(string UserId)
         {
-            yogi.Practices.Add( new Practice
-                {
-                    Name = post.practiceName,
-                    Poses = new List<UserPose>()
-                });
+            ApplicationUser newUser = Context.Users.FirstOrDefault(u => u.Id == UserId);
+            Yogi newYogi = new Yogi
+            {
+                BaseUser = newUser,
+                Name = newUser.UserName,
+                Practices = new List<Practice>() 
+            };
+            Context.Yogis.Add(newYogi);
             Context.SaveChanges();
         }
+
+        //Practice methods----------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
+
 
         public Practice SearchYogiForPractice(Yogi yogi, string practice)
         {
@@ -51,20 +61,37 @@ namespace PracticeBuilder.DAL
             Context.Practices.Remove(PracticeToRemove);
             Context.SaveChanges();
         }
-        internal void GenereateUser(string UserId)
+
+        public void AddNewPractice(Yogi yogi, PracticePost post)
         {
-            ApplicationUser newUser = Context.Users.FirstOrDefault(u => u.Id == UserId);
-            Yogi newYogi = new Yogi
+            yogi.Practices.Add(new Practice
             {
-                BaseUser = newUser,
-                Name = newUser.UserName,
-                Practices = new List<Practice>() 
-            };
-            Context.Yogis.Add(newYogi);
+                Name = post.practiceName,
+                Poses = new List<UserPose>()
+            });
             Context.SaveChanges();
         }
 
-        //Practice methods----------------------------------------------------------------------
+        //Base Pose methods-------------------------------------------------------------
+        //------------------------------------------------------------------------------
+
+
+        public BasePose FindBasePose(string base_pose)
+        {
+            BasePose found_base_pose = Context.BasePoses.FirstOrDefault(u => u.Name == base_pose);
+            return found_base_pose;
+        }
+
+        public List<BasePose> GetBasePoses()
+        {
+
+            return Context.BasePoses.ToList();
+        }
+
+        //User Pose methods ------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------
+
+
         public void NewUserPose(Yogi yogi, PosePost pose_post)
         {
             BasePose found_base_pose = FindBasePose(pose_post.poseName);
@@ -83,12 +110,14 @@ namespace PracticeBuilder.DAL
             found_practice.Poses.Add(new_pose);
             Context.SaveChanges();
         }
+
         public UserPose FindUserPose(Practice practice, string pose)
         {
             UserPose found_pose = practice.Poses.FirstOrDefault(u => u.Name == pose);
             return found_pose;
 
         }
+
         public void DeletePose(Yogi yogi, PosePost pose_post)
         {
             Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceName);
@@ -98,58 +127,18 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
         }
 
-        //Base Pose methods--------------------------------------------------------
-        public BasePose FindBasePose(string base_pose)
-        {
-            BasePose found_base_pose = Context.BasePoses.FirstOrDefault(u => u.Name == base_pose);
-            return found_base_pose;
-        }
-        public List<BasePose> GetBasePoses()
-        {
-
-            return Context.BasePoses.ToList();
-        }
-
-        //User Pose methods ------------------------------------------------------------------------
-        public void EditPoseName(UserPose pose, string new_name)
-        {
-            pose.Name = new_name;
-            Context.SaveChanges();
-        }
-
-
-
         public void EditPose(Yogi yogi, PosePut put)
         {
             var found_pose = Context.Yogis.FirstOrDefault(x => x.YogiID == yogi.YogiID)
                 .Practices.FirstOrDefault(x => x.Name == put.practiceName)
                 .Poses.FirstOrDefault(x => x.Name == put.poseName);
-            //Practice found_practice = SearchYogiForPractice(currentYogi, put.practiceName);
-            //UserPose found_pose = FindUserPose(found_practice, put.poseName);
 
             found_pose.Duration = put.poseDuration;
             found_pose.Side = put.poseSide;
-            try
-            {
-                Context.SaveChanges();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        /*public void EditPoseSide(Yogi yogi, PosePut put)
-        {
-            Practice found_practice = SearchYogiForPractice(yogi, put.practiceName);
-            UserPose found_pose = FindUserPose(found_practice, put.poseName);
-
-            if (found_pose.Side != put.poseSide)
-            {
-                found_pose.Side = put.poseSide;
-            }
+       
             Context.SaveChanges();
-        }*/
+            
+        }
 
         public List<Practice> GetAllPractices(Yogi yogi)
         {
@@ -163,12 +152,5 @@ namespace PracticeBuilder.DAL
             return found_practice.Poses.ToList();
         }
 
-        //Context.Users.FirstOrDefault(u => u.UserName == name);
-
-        /*public void MovePose(Practice practice, UserPose pose_to_move, int new_positon)
-        {
-            List<UserPose> AllPoses = practice.GetAllPoses();
-
-        }*/
     }
 }

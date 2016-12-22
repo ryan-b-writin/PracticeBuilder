@@ -4,8 +4,9 @@
 app.controller("practiceCtrl", function ($scope, $http) {
 
     //init ---------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------
 
-    GetAllPractices = function () {
+    getAllPractices = function () {
         let arrayOfPractices = [];
         $http.get('/api/Practice')
             .success(function (response) {
@@ -25,23 +26,27 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
         .success(function (response) {
             for (practice in response)
-            if (response[practice].Name == $scope.selectedPractice.Name)
-            {
-                $scope.selectedPractice.Poses = response[practice].Poses;
-            }
+                if (response[practice].Name === $scope.selectedPractice.Name) {
+                    $scope.selectedPractice.Poses = response[practice].Poses;
+                }
         })
        .error(function (response) {
            console.log("error!");
-       })
-    }
+       });
+    };
 
     $scope.practices = [];
 
-    GetAllPractices();
+    $scope.current = { name: "ok", info: "yes" };
 
-    //GetAllPractices();
+    getAllPractices();
 
     //Yogi ----------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------
+
+
+    //Practice -----------------------------------------------------------------------
+    //--------------------------------------------------------------------------------
 
     $scope.generateNewPractice = function () {
         console.log("generating");
@@ -52,14 +57,13 @@ app.controller("practiceCtrl", function ($scope, $http) {
             withCredentials: true
         })
         .success(function (response) {
-            GetAllPractices();
+            getAllPractices();
         })
         .error(function (response) {
             console.log("error!");
         });
     };
 
-    //Practice -----------------------------------------------------------------------
     $scope.deletePractice = function() {
         $http({
             method: "POST",
@@ -68,24 +72,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             withCredentials: true
         })
        .success(function (response) {
-           console.log("success!");
-           GetAllPractices();
-       })
-       .error(function (response) {
-           console.log("error!");
-       });
-    };
-
-    $scope.addToPractice = function (pose) {
-        console.log($scope.selectedPractice, "selected practice!!");
-        $http({
-            method: "POST",
-            url: "/api/Pose",
-            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
-            withCredentials: true
-        })
-       .success(function (response) {
-           getUserPoses();
+           getAllPractices();
        })
        .error(function (response) {
            console.log("error!");
@@ -93,6 +80,8 @@ app.controller("practiceCtrl", function ($scope, $http) {
     };
 
     //Base Poses --------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------
+
     $scope.basePoses = [];
 
     $scope.fetchBasePoses = function () {
@@ -110,14 +99,29 @@ app.controller("practiceCtrl", function ($scope, $http) {
                 });
     };
 
-    $scope.current = {name:"ok", info:"yes"};
+    //User poses-------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------
+
 
     $scope.popUpPose = function (pose) {
         $scope.current = pose;
-        
     };
 
-    //User poses-------------------------------------------------------------------------------------------
+    $scope.addToPractice = function (pose) {
+        $http({
+            method: "POST",
+            url: "/api/Pose",
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
+            withCredentials: true
+        })
+       .success(function (response) {
+           getUserPoses();
+       })
+       .error(function (response) {
+           console.log("error!");
+       });
+    };
+
     $scope.saveChanges = function () {
         $http({
             method: "PUT",

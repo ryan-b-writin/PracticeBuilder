@@ -8,17 +8,24 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
+//GET- Get All Base Poses
+//POST- Generate New User Pose From Base Pose 
+//PUT- Edit User Pose
+
 namespace PracticeBuilder.Controllers
 {
     public class PoseController : ApiController
     {
         BuilderRepo repo = new BuilderRepo();
         // GET: Practice
+
+        //Get all Base Poses
         public IEnumerable<BasePose> Get()
         {
             return repo.GetBasePoses();
         }
 
+        //Generate New User Pose From Base Pose
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult Post([FromBody]PosePost post)
         {
@@ -31,6 +38,8 @@ namespace PracticeBuilder.Controllers
             }
             return Ok();
         }
+
+        //Edit User Pose
         [System.Web.Mvc.HttpPut]
         public IHttpActionResult Put([FromBody]PosePut put)
         {
@@ -44,8 +53,5 @@ namespace PracticeBuilder.Controllers
             }
             return Ok();
         }
-
     }
-
-
 }

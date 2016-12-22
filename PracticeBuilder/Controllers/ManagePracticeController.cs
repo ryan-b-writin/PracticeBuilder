@@ -8,11 +8,15 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
+//POST: Remove Practice From Yogi
+
 namespace PracticeBuilder.Controllers
 {
     public class ManagePracticeController : ApiController
     {
         BuilderRepo repo = new BuilderRepo();
+       
+        //Remove Practice From Yogi
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult Post([FromBody]PracticePost post)
         {
