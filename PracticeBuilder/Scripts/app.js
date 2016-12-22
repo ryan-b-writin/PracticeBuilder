@@ -131,6 +131,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             withCredentials: true
         })
        .success(function (response) {
+           getUserPoses();
        })
        .error(function (response) {
            console.log("error!");
@@ -147,7 +148,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             withCredentials: true
         })
        .success(function (response) {
-           console.log("success!", $scope.newPractice);
+           getUserPoses();
        })
        .error(function (response) {
            console.log("error!");
