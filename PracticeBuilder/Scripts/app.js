@@ -86,7 +86,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             withCredentials: true
         })
        .success(function (response) {
-           //getUserPoses();
+           ssdgsfdgfdg
            console.log("success!", $scope.selectedPractice);
        })
        .error(function (response) {
