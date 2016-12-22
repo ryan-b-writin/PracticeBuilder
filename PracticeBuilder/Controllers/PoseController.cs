@@ -39,8 +39,8 @@ namespace PracticeBuilder.Controllers
                 string user_id = User.Identity.GetUserId();
                 ApplicationUser found_app_user = repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
                 Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
-                repo.EditPoseDuration(found_user, put);
-                repo.EditPoseSide(found_user, put);
+                repo.EditPose(found_user, put);
+                //repo.EditPoseSide(found_user, put);
             }
             return Ok();
         }

@@ -12,11 +12,8 @@ namespace PracticeBuilder.Models
         public int UserPoseID { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         public virtual BasePose Reference { get; set; }
-        [Required]
         public int Duration { get; set; }
-        [Required]
         public int PracticeOrder { get; set; }
         public string Side { get; set; }
 
