@@ -8,11 +8,14 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
+//Post: Delete User Pose
 namespace PracticeBuilder.Controllers
 {
     public class UserPoseController : ApiController
     {
         BuilderRepo repo = new BuilderRepo();
+
+        //Delete User Pose
         [System.Web.Mvc.HttpPost]
         public IHttpActionResult Post([FromBody]PosePost post)
         {
