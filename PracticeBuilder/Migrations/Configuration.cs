@@ -15,7 +15,7 @@ namespace PracticeBuilder.Migrations
 
         protected override void Seed(PracticeBuilder.DAL.BuilderContext context)
         {
-            var Triangle = new BasePose { DurationSuggestion = 4, Info = "lorem ipsum", Name = "Traingle", TwoSided = true, ImageURL = "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" };
+            var Triangle = new BasePose { DurationSuggestion = 4, Info = "lorem ipsum", Name = "Triangle", TwoSided = true, ImageURL = "https://upload.wikimedia.org/wikipedia/commons/9/9d/Trikonasana_Yoga-Asana_Nina-Mel.jpg" };
             context.BasePoses.AddOrUpdate(p => p.Name, Triangle);
             //  This method will be called after migrating to the latest version.
 

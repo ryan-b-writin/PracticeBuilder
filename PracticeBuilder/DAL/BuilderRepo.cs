@@ -135,14 +135,9 @@ namespace PracticeBuilder.DAL
 
             found_pose.Duration = put.poseDuration;
             found_pose.Side = put.poseSide;
-            try
-            {
-                Context.SaveChanges();
-            }
-            catch (Exception e)
-            {
-
-            }
+       
+            Context.SaveChanges();
+            
         }
 
         public List<Practice> GetAllPractices(Yogi yogi)
