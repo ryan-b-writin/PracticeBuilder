@@ -128,7 +128,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
             url: "/api/Pose",
             data: JSON.stringify({
                 practiceName: $scope.selectedPractice.Name,
-                poseName: $scope.current.Name,
+                poseID: $scope.current.UserPoseID,
                 poseSide: $scope.current.Side,
                 poseDuration: $scope.current.Duration
             }),
@@ -148,7 +148,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $http({
             method: "POST",
             url: "/api/UserPose",
-            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseID: pose.UserPoseID }),
             withCredentials: true
         })
        .success(function (response) {
