@@ -24,7 +24,7 @@ namespace PracticeBuilder.Controllers
                 string user_id = User.Identity.GetUserId();
                 ApplicationUser found_app_user = repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
                 Yogi found_user = repo.Context.Yogis.FirstOrDefault(u => u.BaseUser.UserName == found_app_user.UserName);
-                repo.DeletePose(found_user, post);
+                repo.DeletePose(post);
             }
             return Ok();
         }

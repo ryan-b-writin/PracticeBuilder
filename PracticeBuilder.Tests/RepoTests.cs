@@ -230,7 +230,7 @@ namespace PracticeBuilder.Tests
         {
             repo = null;
         }
-        [TestMethod]
+        /*[TestMethod]
         public void RepoCanCreateInstanceOfRepo()
         {
             Assert.IsNotNull(repo);
@@ -361,7 +361,7 @@ namespace PracticeBuilder.Tests
             Assert.AreEqual(found_pose.PracticeOrder, 0);
             Assert.AreEqual(found_pose.PracticeOrder, 1);
         }*/
-        [TestMethod]
+       /* [TestMethod]
         public void RepoEnsureOriginalPoseValues()
         {
             ConnectMocksToDatastore();
@@ -460,7 +460,7 @@ namespace PracticeBuilder.Tests
 
             Assert.AreEqual(expected_practice_count, actual_practice_count);
 
-        }
+        }*/
 
     }
 

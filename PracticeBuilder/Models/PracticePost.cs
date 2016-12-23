@@ -8,5 +8,6 @@ namespace PracticeBuilder.Models
     public class PracticePost
     {
         public string practiceName { get; set; }
+        public int practiceID { get; set; }
     }
 }

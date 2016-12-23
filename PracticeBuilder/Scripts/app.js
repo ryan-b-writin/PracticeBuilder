@@ -26,7 +26,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         })
         .success(function (response) {
             for (practice in response)
-                if (response[practice].Name === $scope.selectedPractice.Name) {
+                if (response[practice].PracticeID === $scope.selectedPractice.PracticeID) {
                     $scope.selectedPractice.Poses = response[practice].Poses;
                 }
         })
@@ -68,7 +68,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $http({
             method: "POST",
             url: "/api/ManagePractice",
-            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name }),
+            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name , practiceID: $scope.selectedPractice.PracticeID}),
             withCredentials: true
         })
        .success(function (response) {
@@ -111,7 +111,11 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $http({
             method: "POST",
             url: "/api/Pose",
-            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseName: pose.Name }),
+            data: JSON.stringify({
+                practiceName: $scope.selectedPractice.Name,
+                poseName: pose.Name,
+                practiceID: $scope.selectedPractice.PracticeID
+            }),
             withCredentials: true
         })
        .success(function (response) {
@@ -123,6 +127,8 @@ app.controller("practiceCtrl", function ($scope, $http) {
     };
 
     $scope.saveChanges = function () {
+        console.log("save changes");
+        console.log($scope.current.UserPoseID);
         $http({
             method: "PUT",
             url: "/api/Pose",
@@ -130,7 +136,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
                 practiceName: $scope.selectedPractice.Name,
                 poseID: $scope.current.UserPoseID,
                 poseSide: $scope.current.Side,
-                poseDuration: $scope.current.Duration
+                poseDuration: $scope.current.Duration,
             }),
             withCredentials: true
         })
@@ -148,7 +154,11 @@ app.controller("practiceCtrl", function ($scope, $http) {
         $http({
             method: "POST",
             url: "/api/UserPose",
-            data: JSON.stringify({ practiceName: $scope.selectedPractice.Name, poseID: pose.UserPoseID }),
+            data: JSON.stringify({
+                practiceName: $scope.selectedPractice.Name,
+                poseID: pose.UserPoseID,
+                practiceID: $scope.selectedPractice.PoseID
+            }),
             withCredentials: true
         })
        .success(function (response) {

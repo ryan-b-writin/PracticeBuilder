@@ -11,5 +11,6 @@ namespace PracticeBuilder.Models
         public string practiceName { get; set; }
         public int poseDuration { get; set; }
         public string poseSide { get; set; }
+        public int practiceID { get; set; }
     }
 }
