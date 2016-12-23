@@ -46,20 +46,25 @@ namespace PracticeBuilder.DAL
         //--------------------------------------------------------------------------------------
 
 
-        public Practice SearchYogiForPractice(Yogi yogi, string practice)
+        public Practice SearchYogiForPractice(Yogi yogi, int practiceID)
         {
-            Practice found_practice = yogi.Practices.FirstOrDefault(u => u.Name == practice);
+            Practice found_practice = yogi.Practices.FirstOrDefault(u => u.PracticeID == practiceID);
             return found_practice;
 
         }
 
         public void RemovePracticeFromYogi(Yogi yogi, PracticePost post)
         {
-            Practice PracticeToRemove = SearchYogiForPractice(yogi, post.practiceName);
-
+            Practice PracticeToRemove = SearchYogiForPractice(yogi, post.practiceID);
+            Context.UserPoses.RemoveRange(PracticeToRemove.Poses);
             yogi.Practices.Remove(PracticeToRemove);
             Context.Practices.Remove(PracticeToRemove);
             Context.SaveChanges();
+        }
+
+        public void Delete(UserPose u)
+        {
+            Context.UserPoses.Remove(u);
         }
 
         public void AddNewPractice(Yogi yogi, PracticePost post)
@@ -95,7 +100,7 @@ namespace PracticeBuilder.DAL
         public void NewUserPose(Yogi yogi, PosePost pose_post)
         {
             BasePose found_base_pose = FindBasePose(pose_post.poseName);
-            Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceName);
+            Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceID);
 
             int duration = found_base_pose.DurationSuggestion;
 
@@ -111,27 +116,23 @@ namespace PracticeBuilder.DAL
             Context.SaveChanges();
         }
 
-        public UserPose FindUserPose(Practice practice, string pose)
+        public UserPose FindUserPose(int poseID)
         {
-            UserPose found_pose = practice.Poses.FirstOrDefault(u => u.Name == pose);
+            UserPose found_pose = Context.UserPoses.FirstOrDefault(u => u.UserPoseID == poseID);
             return found_pose;
 
         }
 
-        public void DeletePose(Yogi yogi, PosePost pose_post)
+        public void DeletePose(PosePost pose_post)
         {
-            Practice found_practice = SearchYogiForPractice(yogi, pose_post.practiceName);
-            UserPose pose_to_remove = FindUserPose(found_practice, pose_post.poseName);
-            found_practice.Poses.Remove(pose_to_remove);
+            UserPose pose_to_remove = FindUserPose(pose_post.poseID);
             Context.UserPoses.Remove(pose_to_remove);
             Context.SaveChanges();
         }
 
-        public void EditPose(Yogi yogi, PosePut put)
+        public void EditPose(PosePut put)
         {
-            var found_pose = Context.Yogis.FirstOrDefault(x => x.YogiID == yogi.YogiID)
-                .Practices.FirstOrDefault(x => x.Name == put.practiceName)
-                .Poses.FirstOrDefault(x => x.Name == put.poseName);
+            var found_pose = Context.UserPoses.FirstOrDefault(x => x.UserPoseID == put.poseID);
 
             found_pose.Duration = put.poseDuration;
             found_pose.Side = put.poseSide;
@@ -148,8 +149,13 @@ namespace PracticeBuilder.DAL
         
         public List<UserPose> GetAllUserPoses(Yogi yogi, PracticePost post)
         {
-            Practice found_practice = SearchYogiForPractice(yogi, post.practiceName);
+            Practice found_practice = SearchYogiForPractice(yogi, post.practiceID);
             return found_practice.Poses.ToList();
+        }
+
+        public int CountSimilarNames (string nameToCheck)
+        {
+            return Context.UserPoses.Count(p => p.Name.StartsWith(nameToCheck));
         }
 
     }
