@@ -118,7 +118,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4>
-                                            {{selectedPractice.Name}}
+                                            <input type='text' class="form-control" placeholder='search for...' ng-model='searchText' />
                                         </h4>
                                     </div>
                                     <table class="table table-fixed">
@@ -132,7 +132,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="pose in basePoses">
+                                            <tr ng-repeat="pose in basePoses | filter: searchText ">
                                                 <td class="col-xs-3">{{pose.Name}}</td>
                                                 <td class="col-xs-2">{{pose.DurationSuggestion}} Breaths</td>
                                                 <td class="col-xs-2">"R"</td>
@@ -153,7 +153,6 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
                 </div>
-
             </div>
         </div>
 </div>
