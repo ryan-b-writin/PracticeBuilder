@@ -8,15 +8,27 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-2">
-                <select ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
+                <label>Select a practice:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2">
+               <select ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
             </div>
             <div class="col-xs-4">
-                <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
+                <button type="button" class="" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
                     Add Pose
                 </button>
-                <button type="button" class="btn btn-primary" ng-hide="!selectedPractice" ng-click="deletePractice()">
+                <button type="button" class="btn-danger" ng-hide="!selectedPractice" ng-click="deletePractice()">
                     Delete Practice
                 </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <label>
+                    Or create a new practice:
+                </label>
             </div>
         </div>
         <div class="row">
@@ -25,7 +37,7 @@
                     <input type="text" ng-model="newPractice" placeholder="Name of new practice" /> 
                 </div>
                 <div class="col-xs-2">
-                    <button class="btn btn-default" ng-hide="!newPractice" ng-click="generateNewPractice()">Create New Practice</button>
+                    <button class="" ng-hide="!newPractice" ng-click="generateNewPractice()">Create New Practice</button>
                 </div>
             </form>
         </div>
