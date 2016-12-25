@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "PracticeBuilder";
+    ViewBag.Title = "Practice Builder";
 }
 
 <h2 class="text-center">Practice Builder</h2>
@@ -13,13 +13,13 @@
         </div>
         <div class="row">
             <div class="col-xs-2">
-               <select ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
+                <select class="select-custom" ng-model="selectedPractice" ng-options="practice.Name for practice in practices"></select>
             </div>
             <div class="col-xs-4">
-                <button type="button" class="" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
+                <button type="button" class="btn-custom" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="fetchBasePoses()">
                     Add Pose
                 </button>
-                <button type="button" class="btn-danger" ng-hide="!selectedPractice" ng-click="deletePractice()">
+                <button type="button" class="btn-danger btn-custom" ng-hide="!selectedPractice" ng-click="deletePractice()">
                     Delete Practice
                 </button>
             </div>
@@ -34,52 +34,52 @@
         <div class="row">
             <form>
                 <div class="col-xs-2">
-                    <input type="text" ng-model="newPractice" placeholder="Name of new practice" /> 
+                    <input type="text" ng-model="newPractice" class="name-input" placeholder="Name of new practice" />
                 </div>
                 <div class="col-xs-2">
-                    <button class="" ng-hide="!newPractice" ng-click="generateNewPractice()">Create New Practice</button>
+                    <button class="btn-custom" ng-hide="!newPractice" ng-click="generateNewPractice()">Create New Practice</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- current practice -->
-        <div class="container">
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading tableHead">
-                        <h4>
-                            {{selectedPractice.Name}}
-                        </h4>
-                    </div>
-                    <table class="table table-fixed">
-                        <thead>
-                            <tr>
-                                <th class="col-xs-2">Name</th>
-                                <th class="col-xs-2">Duration</th>
-                                <th class="col-xs-2">Side</th>
-                                <th class="col-xs-3">Thumbnail</th>
-                                <th class="col-xs-3">Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="pose in selectedPractice.Poses">
-                                <td class="col-xs-2">{{pose.Name}}</td>
-                                <td class="col-xs-2">{{pose.Duration}} Breaths</td>
-                                <td class="col-xs-2">{{pose.Side}}</td>
-                                <td class="col-xs-3"><img class="thumbnail" src={{pose.Reference.ImageURL}} /></td>
-                                <td class="col-xs-3">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose" ng-click="popUpPose(pose)">
-                                        View/Edit
-                                    </button>
-                                    <button class="btn btn-default" ng-click="remove(pose)">Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading tableHead">
+                    <h4>
+                        {{selectedPractice.Name}}
+                    </h4>
                 </div>
+                <table class="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-3">Name</th>
+                            <th class="col-xs-2">Duration</th>
+                            <th class="col-xs-2">Side</th>
+                            <th class="col-xs-2">Thumbnail</th>
+                            <th class="col-xs-3">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pose in selectedPractice.Poses">
+                            <td class="col-xs-3">{{pose.Name}}</td>
+                            <td class="col-xs-2">{{pose.Duration}} Breaths</td>
+                            <td class="col-xs-2">{{pose.Side}}</td>
+                            <td class="col-xs-2"><img class="thumbnail" src={{pose.Reference.ImageURL}} /></td>
+                            <td class="col-xs-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewpose" ng-click="popUpPose(pose)">
+                                    View/Edit
+                                </button>
+                                <button class="btn btn-default" ng-click="remove(pose)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 
     <!-- view/edit modal -->
     <div class="modal fade" id="viewpose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -92,29 +92,28 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-6 holdFor">
                                 <form>
-                                    <label>Hold:<input type="text" ng-model="current.Duration" />Breaths</label>
-                                    <label>Side:<input type="text" ng-model="current.Side" /></label>
+                                    <label>Hold:<input class="editPoseInput" type="text" ng-model="current.Duration" />Breaths</label></br>
+                                    <label>Side:<input class="editPoseInput" type="text" ng-model="current.Side" /></label>
                                 </form>
                             </div>
                             <div class="col-xs-6">
-                                <img class="modalphoto" src={{current.ImageURL}} />
+                                <img class="modalphoto" src={{current.Reference.ImageURL}} />
                             </div>
                         </div>
                     </div>
                     <div>
-                        {{current.Info}}
+                        {{current.Reference.Info}}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="saveChanges(current.Duration, current.Side)" data-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveChanges()" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-
 
 <!-- add pose modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
