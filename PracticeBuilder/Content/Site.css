@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url(Images/temple.jpg);
+    font-family: 'Mirza', cursive;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -63,10 +65,45 @@ textarea {
     color:#364745;
 }
 
-body{
-    background-image: url(Images/temple.jpg);
-}
-
 .tableHead {
     background-color: #f48342
+}
+
+.btn-custom {
+    border-radius: 10px;
+    height: 30px;
+}
+
+.select-custom{
+    border-radius: 10px;
+    width: 185px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.name-input{
+    border-radius: 4px;
+    width: 185px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+h2{
+    font-family: 'Merienda', cursive;
+    color: #636033;
+}
+
+h4{
+    font-family: 'Merienda', cursive;
+}
+
+.holdFor{
+    font-size: 2.5em;
+}
+
+.editPoseInput {
+    border-radius: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    width: 50px;
 }
