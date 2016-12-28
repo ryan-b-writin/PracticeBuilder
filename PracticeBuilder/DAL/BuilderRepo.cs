@@ -32,11 +32,28 @@ namespace PracticeBuilder.DAL
         internal void GenereateUser(string UserId)
         {
             ApplicationUser newUser = Context.Users.FirstOrDefault(u => u.Id == UserId);
+            BasePose sample = FindBasePose("Warrior II");
             Yogi newYogi = new Yogi
             {
                 BaseUser = newUser,
                 Name = newUser.UserName,
-                Practices = new List<Practice>() 
+                Practices = new List<Practice>
+                {
+                    new Practice
+                    {
+                        Name = "Sample Practice",
+                        Poses = new List<UserPose>
+                        {
+                            new UserPose
+                            {
+                                Name = "Sample Pose",
+                                Duration = 999,
+                                Side = "Use View/Edit to set",
+                                Reference = sample
+                            }
+                        }
+                    }
+                }
             };
             Context.Yogis.Add(newYogi);
             Context.SaveChanges();

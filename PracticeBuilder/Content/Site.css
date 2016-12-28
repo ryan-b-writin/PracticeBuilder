@@ -30,7 +30,7 @@ textarea {
 }
 .thumbnail{
     width:32px;
-    height:auto;
+    max-height:34px;
 }
 .table-fixed thead {
   width: 97%;

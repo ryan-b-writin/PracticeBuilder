@@ -381,6 +381,7 @@ namespace PracticeBuilder.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        repo.GenereateUser(user.Id);
                         return RedirectToLocal(returnUrl);
                     }
                 }
