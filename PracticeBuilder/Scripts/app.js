@@ -1,10 +1,24 @@
 ﻿var app = angular.module('practiceBuilder', []);
 
 
-app.controller("practiceCtrl", function ($scope, $http) {
+app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
 
     //init ---------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
+    var reference = {
+        ImageURL: "https://placehold.it/50x50"
+    };
+
+    var SamplePose = {
+        Name: "Sample pose",
+        Duration: 5,
+        Reference: reference
+    };
+
+    $scope.selectedPractice = {
+        Name: "Sample Practice",
+        Poses: [SamplePose]
+    };
 
     getAllPractices = function () {
         let arrayOfPractices = [];
@@ -136,7 +150,7 @@ app.controller("practiceCtrl", function ($scope, $http) {
                 practiceName: $scope.selectedPractice.Name,
                 poseID: $scope.current.UserPoseID,
                 poseSide: $scope.current.Side,
-                poseDuration: $scope.current.Duration,
+                poseDuration: $scope.current.Duration
             }),
             withCredentials: true
         })
@@ -169,4 +183,4 @@ app.controller("practiceCtrl", function ($scope, $http) {
        });
     };
 
-});
+}]);

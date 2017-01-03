@@ -62,6 +62,11 @@ namespace PracticeBuilder.DAL
         //Practice methods----------------------------------------------------------------------
         //--------------------------------------------------------------------------------------
 
+        public List<Practice> GetAllPractices(Yogi yogi)
+        {
+            List<Practice> allPractices = yogi.Practices.ToList();
+            return allPractices;
+        }
 
         public Practice SearchYogiForPractice(Yogi yogi, int practiceID)
         {
@@ -156,12 +161,6 @@ namespace PracticeBuilder.DAL
        
             Context.SaveChanges();
             
-        }
-
-        public List<Practice> GetAllPractices(Yogi yogi)
-        {
-            List<Practice> allPractices = yogi.Practices.ToList();
-            return allPractices;
         }
         
         public List<UserPose> GetAllUserPoses(Yogi yogi, PracticePost post)
