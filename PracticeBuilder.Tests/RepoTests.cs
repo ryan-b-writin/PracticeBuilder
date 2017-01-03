@@ -272,11 +272,34 @@ namespace PracticeBuilder.Tests
         [TestMethod]
         public void RepoCanGenerateUserPoseFromBasePose()
         {
+            ConnectMocksToDatastore();
+            Yogi yogi = repo.FindYogi("second");
+            PosePost ppost = new PosePost { poseName = "first", practiceID = 2, };
+            Practice found_practice = repo.SearchYogiForPractice(yogi, 2);
+            Assert.AreEqual(found_practice.Poses.Count, 3);
 
+            repo.NewUserPose(yogi, ppost);
+
+            string expected_pose_name = "first";
+            string actual_pose_name = found_practice.Poses[3].Name;
+
+            Assert.AreEqual(expected_pose_name, actual_pose_name);
+            
         }
         [TestMethod]
         public void RepoCanRemoveUserPose()
         {
+            ConnectMocksToDatastore();
+            PosePost ppost = new PosePost { poseID = 0 };
+            Assert.AreEqual(user_poses.Count, 3);
+
+            repo.DeletePose(ppost);
+
+            int expected_pose_count = 2;
+            int actual_pose_count = user_poses.Count;
+            UserPose should_be_null = repo.FindUserPose(0);
+            Assert.AreEqual(expected_pose_count, actual_pose_count);
+            Assert.IsNull(should_be_null);
 
         }
         [TestMethod]
@@ -298,15 +321,21 @@ namespace PracticeBuilder.Tests
 
         }
         [TestMethod]
-        public void RepoCanReorderPoses()
-        {
-
-        }
-        [TestMethod]
         public void RepoCanEditPoses()
         {
- 
-     
+            ConnectMocksToDatastore();
+            string expected_pose_side = "r";
+            int expected_pose_duration = 500;
+            PosePut pput = new PosePut { poseID = 0, poseSide = expected_pose_side, poseDuration = expected_pose_duration };
+            UserPose found_pose = user_poses[0];
+
+            repo.EditPose(pput);
+            string actual_pose_side = found_pose.Side;
+            int actual_pose_duration = found_pose.Duration;
+
+            Assert.AreEqual(expected_pose_duration, actual_pose_duration);
+            Assert.AreEqual(expected_pose_side, actual_pose_side);
+
         }
         [TestMethod]
         public void RepoGetAllBasePoses()
@@ -321,7 +350,12 @@ namespace PracticeBuilder.Tests
         [TestMethod]
         public void RepoGetAllPractices()
         {
+            ConnectMocksToDatastore();
+            Yogi yogi = repo.FindYogi("second");
+            int expected_practice_count = yogi.Practices.Count;
+            int actual_practice_count = repo.GetAllPractices(yogi).Count;
 
+            Assert.AreEqual(expected_practice_count, actual_practice_count);
         }
 
     }
