@@ -3,6 +3,7 @@
 }
 
 <h2 class="text-center">Practice Viewer</h2>
+<h4 class="text-center"> Use View/Edit buttons to view pose in more detail, Set/change side or change duration of a pose!</h4>
 <div ng-controller="practiceCtrl">
     <div class="containter">
         <div class="row">
@@ -16,7 +17,7 @@
             </div>
             <div class="col-xs-4">
                 <!-- trigger slideshow -->
-                <button type="button" class="btn-custom" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="count=0">
+                <button type="button" class="btn-custom" ng-hide="!selectedPractice" data-toggle="modal" data-target="#myModal" ng-click="count=0; tallyDuration()">
                     View As Slideshow
                 </button>
                 <button type="button" class="btn-custom btn-danger" ng-hide="!selectedPractice" ng-click="deletePractice()">
@@ -77,7 +78,10 @@
                     <div class="container">
                         <div class="row">
                             <img class="slideImage col-xs-6" src={{selectedPractice.Poses[count].Reference.ImageURL}} />
-                            <div class="holdFor text-center col-xs-6"><p>Hold pose for:<br />{{selectedPractice.Poses[count].Duration}}</br>Breaths</p></div>
+                            <div class="holdFor text-center col-xs-6">
+                                <p>Hold pose for:<br />{{selectedPractice.Poses[count].Duration}}</br>Breaths</p>
+                                <p>Side: {{selectedPractice.Poses[count].Side}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="poseInfo">
