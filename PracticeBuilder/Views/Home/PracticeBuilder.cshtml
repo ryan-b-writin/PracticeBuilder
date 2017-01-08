@@ -3,13 +3,19 @@
     ViewBag.Title = "Practice Builder";
 }
 
-<h2 class="text-center">Practice Builder</h2>
-<h4 class="text-center"> Use View/Edit buttons to view pose in more detail, Set/change side or change duration of a pose!</h4>
+
 <div ng-controller="practiceCtrl">
+    <h2 class="text-center">{{selectedPractice.Name}}</h2>
+    <h4 class="text-center"> Use View/Edit buttons to view pose in more detail, Set/change side or change duration of a pose!</h4>
     <div class="container">
         <div class="row">
-            <div class="col-xs-2">
+            <div class="col-xs-6">
                 <label>Select a practice:</label>
+            </div>
+            <div class="col-xs-6">
+                <label>
+                    Or create a new practice:
+                </label>
             </div>
         </div>
         <div class="row">
@@ -24,15 +30,6 @@
                     Delete Practice
                 </button>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">
-                <label>
-                    Or create a new practice:
-                </label>
-            </div>
-        </div>
-        <div class="row">
             <form>
                 <div class="col-xs-2">
                     <input type="text" ng-model="newPractice" class="name-input" placeholder="Name of new practice" />
