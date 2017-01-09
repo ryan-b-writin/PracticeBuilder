@@ -144,7 +144,7 @@
                                             <tr ng-repeat="pose in basePoses | filter: searchText ">
                                                 <td class="col-xs-3">{{pose.Name}}</td>
                                                 <td class="col-xs-2">{{pose.DurationSuggestion}} Breaths</td>
-                                                <td class="col-xs-2">"R"</td>
+                                                <td class="col-xs-2"><p ng-show="pose.TwoSided">Two-Sided</p></td>
                                                 <td class="col-xs-3"><img class="thumbnail" src={{pose.ImageURL}} /></td>
                                                 <td class="col-xs-2">
                                                     <button type="button" class="btn btn-primary" ng-click="addToPractice(pose)">
