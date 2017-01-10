@@ -80,7 +80,7 @@
                             <img class="slideImage col-xs-6" src={{selectedPractice.Poses[count].Reference.ImageURL}} />
                             <div class="holdFor text-center col-xs-6">
                                 <p>Hold pose for:<br />{{selectedPractice.Poses[count].Duration}}</br>Breaths</p>
-                                <p>Side: {{selectedPractice.Poses[count].Side}}</p>
+                                <p ng-hide="!selectedPractice.Poses[count].Side">Side: {{selectedPractice.Poses[count].Side}}</p>
                             </div>
                         </div>
                     </div>
