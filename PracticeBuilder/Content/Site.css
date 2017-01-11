@@ -2,6 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url(Images/temple.jpg);
+    background-size: cover;
     font-family: 'Mirza', cursive;
 }
 
@@ -88,13 +89,14 @@ textarea {
     margin-bottom: 5px;
 }
 
-h2,h3,h4{
+h2,h4{
     font-family: 'Merienda', cursive;
     color: #636033;
 }
 
-h4{
+h3 {
     font-family: 'Merienda', cursive;
+    color: white;
 }
 
 .holdFor{

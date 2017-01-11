@@ -3,12 +3,11 @@
 }
 
 <h2 class="text-center">Practice Viewer</h2>
-<h4 class="text-center"> Use View/Edit buttons to view pose in more detail, Set/change side or change duration of a pose!</h4>
 <div ng-controller="practiceCtrl">
     <div class="containter">
         <div class="row">
             <div class="col-xs-2">
-                <label>Select a practice:</label>
+                <label>Select a practice to view:</label>
             </div>
         </div>
         <div class="row">
@@ -64,6 +63,7 @@
             </div>
         </div>
     </div>
+    <h3 class="text-center"> Create and assemble a practice in the Practice Builder, then view it here as a slideshow!</h3>
 
     <!-- slideshow modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-keydown="count=count+1">
@@ -80,7 +80,7 @@
                             <img class="slideImage col-xs-6" src={{selectedPractice.Poses[count].Reference.ImageURL}} />
                             <div class="holdFor text-center col-xs-6">
                                 <p>Hold pose for:<br />{{selectedPractice.Poses[count].Duration}}</br>Breaths</p>
-                                <p>Side: {{selectedPractice.Poses[count].Side}}</p>
+                                <p ng-hide="!selectedPractice.Poses[count].Side">Side: {{selectedPractice.Poses[count].Side}}</p>
                             </div>
                         </div>
                     </div>

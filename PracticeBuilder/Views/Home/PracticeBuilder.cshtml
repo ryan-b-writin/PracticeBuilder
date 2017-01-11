@@ -3,13 +3,18 @@
     ViewBag.Title = "Practice Builder";
 }
 
-<h2 class="text-center">Practice Builder</h2>
-<h4 class="text-center"> Use View/Edit buttons to view pose in more detail, Set/change side or change duration of a pose!</h4>
+
 <div ng-controller="practiceCtrl">
+    <h2 class="text-center">{{selectedPractice.Name}}</h2>
     <div class="container">
         <div class="row">
-            <div class="col-xs-2">
-                <label>Select a practice:</label>
+            <div class="col-xs-6">
+                <label>Select a practice to edit:</label>
+            </div>
+            <div class="col-xs-6">
+                <label>
+                    Or create a new practice:
+                </label>
             </div>
         </div>
         <div class="row">
@@ -24,15 +29,6 @@
                     Delete Practice
                 </button>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">
-                <label>
-                    Or create a new practice:
-                </label>
-            </div>
-        </div>
-        <div class="row">
             <form>
                 <div class="col-xs-2">
                     <input type="text" ng-model="newPractice" class="name-input" placeholder="Name of new practice" />
@@ -81,6 +77,8 @@
             </div>
         </div>
     </div>
+    <h3 class="text-center"> Click View/Edit to view a pose in detail, Set/change its side or change its duration.</h3>
+    <h3 class="text-center"> Once you've assembled a practice, view it in the Practice Viewer.</h3>
 
     <!-- view/edit modal -->
     <div class="modal fade" id="viewpose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -147,7 +145,7 @@
                                             <tr ng-repeat="pose in basePoses | filter: searchText ">
                                                 <td class="col-xs-3">{{pose.Name}}</td>
                                                 <td class="col-xs-2">{{pose.DurationSuggestion}} Breaths</td>
-                                                <td class="col-xs-2">"R"</td>
+                                                <td class="col-xs-2"><p ng-show="pose.TwoSided">Two-Sided</p></td>
                                                 <td class="col-xs-3"><img class="thumbnail" src={{pose.ImageURL}} /></td>
                                                 <td class="col-xs-2">
                                                     <button type="button" class="btn btn-primary" ng-click="addToPractice(pose)">

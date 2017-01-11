@@ -16,7 +16,7 @@ app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
     };
 
     $scope.selectedPractice = {
-        Name: "Sample Practice",
+        Name: "Practice Builder",
         Poses: [SamplePose]
     };
 
@@ -24,7 +24,9 @@ app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
         let arrayOfPractices = [];
         $http.get('/api/Practice')
             .success(function (response) {
+                let numOfPractices = response.length -1 ;
                 $scope.practices = response;
+                $scope.selectedPractice = response[numOfPractices];
             })
         .error(function (response) {
             console.log('error!');
@@ -50,6 +52,7 @@ app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
     };
 
     $scope.practices = [];
+    $scope.numOfPractices = 0;
 
     $scope.current = { name: "ok", info: "yes" };
 
@@ -72,6 +75,7 @@ app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
         })
         .success(function (response) {
             getAllPractices();
+            $scope.newPractice = "";
         })
         .error(function (response) {
             console.log("error!");
