@@ -11,8 +11,9 @@ There are a number of videos and books and even podcasts that will outline an at
 #### What does it do?
 The database comes pre-seeded with 20 yoga poses, including images and instructions borrowed fom Wikipedia. 
 Users can select from these poses and organize them into practices. Once added to a practice, a pose's duration and side can be edited. You may wish to hold a pose longer than the typical 5 breaths, and many poses are performed one side at a time.  
-the poses seeded in the database are 'base poses', which are used to generate 'user poses' that point back to and draw information from the base pose.
-user poses are kept in a list, or practice. Each user has a list of practices.  
+
+The poses seeded in the database are 'base poses', which are used to generate 'user poses' that point back to and draw information from the base pose.
+User poses are kept in a list, or practice. Each user has a list of practices.  
 ERD: https://github.com/ryan-b-writin/PracticeBuilder/blob/master/PracticeBuilderERD.png  
 
 A practice can be viewed as a slideshow, ideally on a laptop in front of their mat.
