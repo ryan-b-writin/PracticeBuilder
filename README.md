@@ -20,7 +20,7 @@ A practice can be viewed as a slideshow, ideally on a laptop in front of their m
 
 #### How do you use it?
 
-To create a practic, the user will navigate to the Practice Builder. There, they will enter the desired practice name into a textbox and slick 'create' or press enter.  
+To create a practice, the user will navigate to the Practice Builder. There, they will enter the desired practice name into a textbox and slick 'create' or press enter.  
 
 Once created, a new practice is automatically selected. While in the builder, the user can click 'add pose' to be presented with a searchable list of base poses. Each pose has an 'add' button that will generate a user pose and add it to the current practice.  
 
@@ -30,7 +30,7 @@ In the 'practice viewer' the user can select a practice and click 'view as slide
 
 #### Future Plans
 
-When I return to this project in the future, I would like to:
--Seed more poses in the database
--Allow for users to change the order of poses in the list rather than deleting poses and adding them again
--Allow for users to view other users and their practices.
+When I return to this project in the future, I would like to:  
+-Seed more poses in the database  
+-Allow for users to change the order of poses in the list rather than deleting poses and adding them again  
+-Allow for users to view other users and their practices.  
