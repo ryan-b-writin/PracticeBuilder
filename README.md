@@ -20,10 +20,13 @@ A practice can be viewed as a slideshow, ideally on a laptop in front of their m
 
 #### How do you use it?
 
-To create a practic, the user will navigate to the Practice Builder. There, they will enter the desired practice name into a textbox and slick 'create' or press enter.
+To create a practic, the user will navigate to the Practice Builder. There, they will enter the desired practice name into a textbox and slick 'create' or press enter.  
+
 Once created, a new practice is automatically selected. While in the builder, the user can click 'add pose' to be presented with a searchable list of base poses. Each pose has an 'add' button that will generate a user pose and add it to the current practice.  
-Each pose in a practice has a 'view/edit' button that will allow them to change the duration or change the side to perform the pose on.
-In the 'practice viewer' the user can select a practice and click 'view as slideshow' to move through the practice. Pressing any key will advance the slideshow.
+
+Each pose in a practice has a 'view/edit' button that will allow them to change the duration or change the side to perform the pose on.  
+
+In the 'practice viewer' the user can select a practice and click 'view as slideshow' to move through the practice.   Pressing any key will advance the slideshow.  
 
 #### Future Plans
 
