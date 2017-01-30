@@ -21,10 +21,11 @@ app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
     };
 
     getAllPractices = function () {
-        let arrayOfPractices = [];
         $http.get('/api/Practice')
             .success(function (response) {
                 $scope.practices = response;
+                var numOfPractices = $scope.practices.length - 1 ;
+                $scope.selectedPractice = $scope.practices[numOfPractices]
             })
         .error(function (response) {
             console.log('error!');
@@ -39,10 +40,11 @@ app.controller("practiceCtrl", ["$scope", "$http", function ($scope, $http) {
             withCredentials: true
         })
         .success(function (response) {
-            for (practice in response)
+            for (practice in response) {
                 if (response[practice].PracticeID === $scope.selectedPractice.PracticeID) {
                     $scope.selectedPractice.Poses = response[practice].Poses;
                 }
+            }
         })
        .error(function (response) {
            console.log("error!");
